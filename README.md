@@ -26,10 +26,10 @@ URLlink|the link to be accessed.
 =|Link control content start tag.
 &|Link control delimited tags.
 
-## Patterns
-The program has three different operating modes, which may be switched between them when running.
+## Mode
+The Mode has three different operating modes, which may be switched between them when running.
 
-Parameter|Explain
+Mode|Explain
 ----|----
 0|mode 0, when accessing the link, you will go from the navigation page to the preview page.
 1|Mode 1, open a new tab page and open the preview page when you access the link.
