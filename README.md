@@ -16,7 +16,7 @@ Link examples:<br>
 ## parameters
 When the program uses link control, it recognizes only the parameters of a specific rule:
 
-Parameter |
+Parameter|Explain
 ----|----
 mode|mode control.
 urlnumber|The numeric number of the access link.
@@ -29,7 +29,7 @@ URLlink|the link to be accessed.
 ## Patterns
 The program has three different operating modes, which may be switched between them when running.
 
-Parameter |
+Parameter|Explain
 ----|----
 0|mode 0, when accessing the link, you will go from the navigation page to the preview page.
 1|Mode 1, open a new tab page and open the preview page when you access the link.
