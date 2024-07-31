@@ -33,7 +33,7 @@ Parameter|Explain
 ----|----
 0|mode 0, when accessing the link, you will go from the navigation page to the preview page.
 1|Mode 1, open a new tab page and open the preview page when you access the link.
-Mode 2, when you visit a link, you open a new tab page and visit the landing page.
+2|Mode 2, when you visit a link, you open a new tab page and visit the landing page.
 3|Mode 3, directly open the preview page.
 -1<br>s <br><br>sitting|Setup mode, open the settings page, and modify the program configuration.
 
