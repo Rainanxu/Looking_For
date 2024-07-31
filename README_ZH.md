@@ -1,7 +1,7 @@
 # 路亭 Looking_For
 一个快捷导航网页。
 
-[English](README.md) • [中文](README_ZH.md)
+[English](README.md)
 
 # 概述
 本程序是一个快捷导航网页，只需输入一次关键词就可以获得各个目标网页的搜索结果。
