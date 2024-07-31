@@ -50,9 +50,9 @@ The export tool checks the program code, and the rule displays a download button
 The code of this program is special, and all the code will be merged into a single line when saved, and part of the code will be kept in the label attributes, so some special characters need to be modified.
 
 Modify the code according to the following principles:
-* 1. The program can still run normally after removing all line breaks.
+* 1 The program can still run normally after removing all line breaks.
 * * Try to keep the 'that can be omitted`;`.
-* 2. Copy the code in the front of `/*CONFIG END*/` and the end of `<input placeholder="I" id="Looking_For_S_Save_Body" value="` and between the two, and paste it in `<input placeholder="I" id="Looking_For_S_Save_Body" value="">` `value`.
+* 2 Copy the code in the front of `/*CONFIG END*/` and the end of `<input placeholder="I" id="Looking_For_S_Save_Body" value="` and between the two, and paste it in `<input placeholder="I" id="Looking_For_S_Save_Body" value="">` `value`.
 * * Replace `"` with `LF34b;`.
 * * Replace`<`with`LF60b;`.
 * * Replace`>`with`LF62b;`.
