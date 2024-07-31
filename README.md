@@ -35,7 +35,7 @@ Parameter|Explain
 1|Mode 1, open a new tab page and open the preview page when you access the link.
 2|Mode 2, when you visit a link, you open a new tab page and visit the landing page.
 3|Mode 3, directly open the preview page.
--1<br>s <br><br>sitting|Setup mode, open the settings page, and modify the program configuration.
+-1<br>s<br>sitting|Setup mode, open the settings page, and modify the program configuration.
 
 # Development
 
