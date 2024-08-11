@@ -37,6 +37,13 @@ Mode|Explain
 3|Mode 3, directly open the preview page.
 -1<br>s<br>sitting|Setup mode, open the settings page, and modify the program configuration.
 
+## Advice & Tips
+Configurations can be migrated using a variety of saving methods using federation.
+* Migrate the configuration to a new file by saving it to a local cache and then deploying the new file to the target location.
+* Save the configuration to a file and migrate the file to the new device to migrate the configuration to the new device.
+
+The aspect ratio of the background image can be inconsistent with the target screen, and additional dynamic effects will appear when switching.
+
 # Development
 
 Due to browser permission restrictions, the save function requires additional operations to work properly, and the release can be completed in the following ways.
