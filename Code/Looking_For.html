@@ -1250,6 +1250,7 @@
             const Text_N=Looking_For_Language.TX_Png_error_0;
             const Text_O=Looking_For_Language.TX_Png_error_1;
             const Text_E=Looking_For_Language.TX_Png_error_2;
+            const Text_ID_T=[Looking_For_Language.C_theme_png_back,Looking_For_Language.C_theme_png_top,Looking_For_Language.C_theme_png_side,Looking_For_Language.C_theme_png_head];
             let F_S = [
                 function () {
                     Looking_For_Background_Img_Links_B[Looking_For_Background_Img_Links_Now[0]][5] = 0;
@@ -1286,11 +1287,11 @@
                     if (Looking_For_Background_Img_Group_Load_Errored[number0]) {
                         if (Looking_For_Background_Img_Group_Load_Error_Overed[number0] == 1) {
                             L_only = true;
-                            L_O_T = L_O_T + Looking_For_Language[24 + number0] + ' ';
+                            L_O_T = L_O_T + Text_ID_T[number0] + ' ';
                         }
                         else if (Looking_For_Background_Img_Group_Load_Error_Overed[number0] == 2) {
                             L_end = true;
-                            L_E_T = L_E_T + Looking_For_Language[24 + number0] + ' ';
+                            L_E_T = L_E_T + Text_ID_T[number0] + ' ';
                         }
                     }
                     number0++;
