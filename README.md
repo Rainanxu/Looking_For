@@ -8,7 +8,7 @@ The program is a quick navigation page, and you only need to enter a keyword onc
 The program is a single-file web page that is small and easy to deploy.
 This program supports a high degree of customization configuration, and users can freely decide the target page link, color scheme, background image, launch method, etc.
 
-# Useing
+# Using
 This program supports direct interaction and link control.
 Link examples:<br>
 `file:///C://Web/Looking_For.html#mode=3&urlnumber=8&keyword=aaa`
