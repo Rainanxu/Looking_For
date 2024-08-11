@@ -1281,6 +1281,15 @@
                 let L_only = false, L_end = false;
                 let L_O_T = '', L_E_T = '';
                 let number0 = 0;
+                if(Looking_For_Model==-1){
+                    let number1=0;
+                    let Long=Looking_For_Background_If_Use.length;
+                    for(;;){
+                        if(number1>=Long)break;
+                        Looking_For_S_Img_Link_UseAble_Load(number1);
+                        number1++;
+                    }
+                }
                 for (; ;) {
                     if (number0 >= 4) break;
                     if (Looking_For_Background_Img_Group_Load_Errored[number0]) {
