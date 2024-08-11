@@ -355,9 +355,9 @@
                 VT_navigation_enter_prompt: 'Enter prompt',
                 TX_proview_default_prompt: 'The default prompt message that does not use the default access method.',
                 TX_No_confed_default_wellcom_title:['Enter keywords at here please.', 'The type of content is ?', 'confed', 'What are you Looking For ?'],
-                TX_Png_error_0:['Error message', 'Background image ', 'Loading failed', 'A total of', ' sheets,', 'which have been disabled and the next one is loaded.'],
-                TX_Png_error_1:['Picture group', 'There is only one background left, with refresh turned off'],
-                TX_Png_error_2:['Picture group', 'Failed to load all, all disabled and background turned off'],
+                TX_Png_error_0:['Error message', 'Background image ', 'Loading failed', 'A total of', ' sheets,', 'which have been disabled and the next one is loaded.','be disabled.'],
+                TX_Png_error_1:['Picture group', 'There is only one background left, with refresh turned off.'],
+                TX_Png_error_2:['Picture group', 'Failed to load all, all disabled and background turned off.'],
                 TX_Time_Over:['Tip', 'The waiting time can only be between 3-3600 s. '],
                 TX_Link_placeholder:['Group name = Group 1, group number = 1', 'Link 1,url,url?keyword=,site:url,1,0,confed', 'confed'],
                 TX_Img_Batch_Edit:['Bulk edit', 'Queried:', 'Added', 'Removed', 'Target not queried', '查询中...', 'Ordinal filtering is not available for adding'],
@@ -496,7 +496,7 @@
                 VT_navigation_enter_prompt: '输入提示',
                 TX_proview_default_prompt: "未使用默认访问方式的默认提示信息。",
                 TX_No_confed_default_wellcom_title:['请在此输入关键词。', '要找哪一类？', '自定义', '路边亭台 ' + ' ' + ' 适之何方'],
-                TX_Png_error_0:['错误提示', '背景图片', '加载失败', '共', '张，', '已将其禁用并加载下一张。'],
+                TX_Png_error_0:['错误提示', '背景图片', '加载失败', '共', '张，', '已将其禁用并加载下一张。','已禁用。'],
                 TX_Png_error_1:['图片组', '仅余一张背景，已关闭刷新。'],
                 TX_Png_error_2:['图片组', '全部加载失败，已禁用并关闭背景。'],
                 TX_Time_Over:['提示', '等待时间只能在3-3600 s 之间。'],
@@ -1281,7 +1281,6 @@
                 let L_only = false, L_end = false;
                 let L_O_T = '', L_E_T = '';
                 let number0 = 0;
-                Looking_For_Message_Box([Text_N[0], Text_N[1], Looking_For_Background_Img_Links_Load_Errored, Text_N[2], Text_N[3] + Looking_For_Background_Img_Links_Load_Errored_times + Text_N[4], Text_N[5]]);
                 for (; ;) {
                     if (number0 >= 4) break;
                     if (Looking_For_Background_Img_Group_Load_Errored[number0]) {
@@ -1295,6 +1294,12 @@
                         }
                     }
                     number0++;
+                }
+                if(L_only||L_end){
+                    Looking_For_Message_Box([Text_N[0], Text_N[1], Looking_For_Background_Img_Links_Load_Errored, Text_N[2], Text_N[3] + Looking_For_Background_Img_Links_Load_Errored_times + Text_N[4], Text_N[6]]);
+                }
+                else{
+                    Looking_For_Message_Box([Text_N[0], Text_N[1], Looking_For_Background_Img_Links_Load_Errored, Text_N[2], Text_N[3] + Looking_For_Background_Img_Links_Load_Errored_times + Text_N[4], Text_N[5]]);
                 }
                 if (L_only) {
                     Looking_For_Message_Box([Text_O[0], L_O_T, Text_O[1]]);
