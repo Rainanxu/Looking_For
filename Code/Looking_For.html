@@ -3085,7 +3085,7 @@
             const Key_Word_Tips=Looking_For_Language.TX_Link_auto_add_key_words;
             //const Next_Tips = ['已自动填写输入框，请前往确认。', 'The input box has been filled in automatically, please go to confirm.', '提示', 'Prompt'];
             const Next_Tips=Looking_For_Language.TX_Link_auto_add_next;
-            let Text_V = document.getElementById('S_L_Link_Auto_Add_Input').value;
+            let Text_V = document.getElementById('S_L_Link_Auto_Add_Input').value.replace(/\\/g,'/');
             let Link_V = ['', '', ''];
             let Link_Add_E = document.getElementById('S_L_Link_Add_Input');
             if (Text_V == '') return 0;
@@ -3147,7 +3147,7 @@
             let tb=['Group name', 'Group number','Error',"The group number can only be between '1' and '1000'!",'The group name is too long!','The group number has been used, please replace the group number.','The group has been added'];*/
             const TE_T=Looking_For_Language.TX_Link_add_add_group;
             let Element_I = document.getElementById('S_L_Group_Add_Input'), Text_V = [0, ''], If_Error = 0;
-            let Text = Element_I.value;
+            let Text = Element_I.value.replace(/\\/g,'\\\\');
             Text = Text.split(',' + TE_T[1] + ' = ');
             Text_V[1] = Text[0];
             if (Text.length > 1) {
@@ -3181,11 +3181,11 @@
                     Looking_For_Message_Box([TE_T[2], TE_T[4]]);
                 }
             }
-            Element_I.value = TE_T[0] + ' = ' + Text_V[1] + ',' + TE_T[1] + ' = ' + Text_V[0] + ';';
+            Element_I.value = TE_T[0] + ' = ' + Text_V[1].replace(/\\\\/g,'\\') + ',' + TE_T[1] + ' = ' + Text_V[0] + ';';
             if (If_Error) return -1;
             if (value == 1) {
                 Looking_For_Link_Add_Group_Add(Text_V[0], Text_V[1]);
-                Looking_For_Message_Box([TE_T[6], Text_V[1]]);
+                Looking_For_Message_Box([TE_T[6], Text_V[1].replace(/\\\\/g,'\\')]);
             }
         }
         function Looking_For_Link_Add_Group_Add(number, name) {
@@ -3256,7 +3256,12 @@
                 Text_S[1] = 'url';
                 Looking_For_Message_Box([Group_Error_Tipes[0], [Group_Error_Tipes[3]]]);
             }
+            Text_S[1]=Text_S[1].replace(/\\/g,'/');
+            Text_S[2]=Text_S[2].replace(/\\/g,'/');
+            Text_S[3]=Text_S[3].replace(/\\/g,'/');
             Text_E.value = Text_S[0] + Text_A[0] + Text_S[1] + Text_A[1] + Text_S[2] + Text_A[2] + Text_S[3] + Text_A[3] + Text_S[4] + Text_A[4] + Text_S[5] + Text_A[5] + Text_S[6];
+            Text_S[0]=Text_S[0].replace(/\\/g,'\\\\');
+            Text_S[6]=Text_S[6].replace(/\\/g,'\\\\');
             if (Type == 1) {
                 if (Text_S[4] == '') Text_S[4] = 0;
                 Text_S[4] = Number(Text_S[4]);
@@ -3362,12 +3367,12 @@
                 else if (Looking_For_Link_Editer_Go_Way_Value == 2) Go_Way_Box_V_H = '-69px';
                 var Go_Way_Box = "<div style='width:100%;height:30px;text-align:center;font-size:24px;border:0px;margin-top:6px;position:relative;'><div  id='Looking_For_Link_Editer_Go_Way_H' style='width:100%;height:30px;overflow:hidden;position:absolute;'><div id='Looking_For_Link_Editer_Go_Way_V' style='width:100%;height=30px;transition:margin-top 0.6s;position:absolute;margin-top:" + Go_Way_Box_V_H + "'><div class='Box_Style' style='width:100%;margin:3px 0px 3px 0px;height:30px;overflow:hidden;cursor:pointer;' onclick='Looking_For_Link_Editer_Go_Way(0)'>" + Title[12] + "</div><div class='Box_Style' style='width:100%;margin:3px 0px 3px 0px;height:30px;overflow:hidden;cursor:pointer;' onclick='Looking_For_Link_Editer_Go_Way(1)'>" + Title[13] + "</div><div class='Box_Style' style='width:100%;margin:3px 0px 3px 0px;height:30px;overflow:hidden;cursor:pointer;' onclick='Looking_For_Link_Editer_Go_Way(2)'>" + Title[14] + "</div></div></div></div>";
                 var Edit_Class = 'S_Link_Edit';
-                var IN_T = "<div id='S_Link_Edit_Box' class='S_Link_Hind_Edit' style='margin-top:" + H_Top + "px;margin-left:" + To_Left + "px;width:" + Width + "px;text-align:center;' onmouseover='Looking_For_Link_Edit_Use(1)' onmouseout='Looking_For_Link_Edit_Use(0)'><div style='width:65.5%;margin-left:1.5%'><div style='width:23%;margin:10px 1% 10px 0%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[0] + "</div><input placeholder='0' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Group_Message[1] + "'></div><div style='width:23%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[1] + "</div><input placeholder='0' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Group_Message[0] + "'></div><div style='width:23%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[2] + "</div><input placeholder='" + Title[2] + " 1' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[1] + "'></div><div style='width:23%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[3] + "</div>" + Go_Way_Box + "</div></div><div style='width:31%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[4] + "</div><input placeholder='" + Title[15] + "' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[6] + "'></div><div style='width:31%;margin:10px 1% 10px 1.5%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[5] + "</div><input placeholder='url' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[2] + "'></div><div style='width:31%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[6] + "</div><input placeholder='url?keyword=' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[3] + "'></div><div style='width:31%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[7] + "</div><input placeholder='site:url' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[4] + "'></div><div class='Box_Style' style='width:40%;height:30px;margin:6px 0px 0px 30%;cursor:pointer;float:left;' onclick='Looking_For_Link_Edit_Link(" + Number0 + ")'>" + Title[11] + "</div></div>";
+                var IN_T = "<div id='S_Link_Edit_Box' class='S_Link_Hind_Edit' style='margin-top:" + H_Top + "px;margin-left:" + To_Left + "px;width:" + Width + "px;text-align:center;' onmouseover='Looking_For_Link_Edit_Use(1)' onmouseout='Looking_For_Link_Edit_Use(0)'><div style='width:65.5%;margin-left:1.5%'><div style='width:23%;margin:10px 1% 10px 0%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[0] + "</div><input placeholder='0' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Group_Message[1].replace(/\\\\/g,'\\') + "'></div><div style='width:23%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[1] + "</div><input placeholder='0' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Group_Message[0] + "'></div><div style='width:23%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[2] + "</div><input placeholder='" + Title[2] + " 1' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[1].replace(/\\\\/g,'\\') + "'></div><div style='width:23%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[3] + "</div>" + Go_Way_Box + "</div></div><div style='width:31%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[4] + "</div><input placeholder='" + Title[15] + "' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[6].replace(/\\\\/g,'\\') + "'></div><div style='width:31%;margin:10px 1% 10px 1.5%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[5] + "</div><input placeholder='url' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[2] + "'></div><div style='width:31%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[6] + "</div><input placeholder='url?keyword=' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[3] + "'></div><div style='width:31%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[7] + "</div><input placeholder='site:url' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin-top:6px;' value='" + Temp_V[4] + "'></div><div class='Box_Style' style='width:40%;height:30px;margin:6px 0px 0px 30%;cursor:pointer;float:left;' onclick='Looking_For_Link_Edit_Link(" + Number0 + ")'>" + Title[11] + "</div></div>";
             }
             else {
                 Edit_Table_Height = 40;
                 var Edit_Class = 'S_Link_Group_Edit';
-                var IN_T = "<div id='S_Link_Edit_Box' class='S_Link_Hind_Edit' style='margin-top:" + H_Top + "px;margin-left:" + To_Left + "px;width:" + Width + "px;text-align:center;' onmouseover='Looking_For_Link_Edit_Use(1)' onmouseout='Looking_For_Link_Edit_Use(0)'><div style='width:25%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[8] + "</div><input placeholder='1' type='number' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin:6px 0px 0px 6px;' value='" + Temp_V[0] + "'></div><div style='width:50%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[9] + "</div><input placeholder='" + Title[9] + " 1' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin:6px 0px 0px 6px;' value='" + Temp_V[1] + "'></div><div style='width:18%;margin:10px 1% 10px 1%;float:right;'> <div class='Box_Style' style='width:100%;height:30px;margin:0px;cursor:pointer;' onclick='Looking_For_Link_Edit_Remove_Group_Button(" + Number0 + ")'>" + Title[10] + "</div><div class='Box_Style' style='width:100%;height:30px;margin:6px 0px 0px 0px;cursor:pointer;' onclick='Looking_For_Link_Edit_Group(" + Number0 + ")'>" + Title[11] + "</div></div></div>";
+                var IN_T = "<div id='S_Link_Edit_Box' class='S_Link_Hind_Edit' style='margin-top:" + H_Top + "px;margin-left:" + To_Left + "px;width:" + Width + "px;text-align:center;' onmouseover='Looking_For_Link_Edit_Use(1)' onmouseout='Looking_For_Link_Edit_Use(0)'><div style='width:25%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[8] + "</div><input placeholder='1' type='number' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin:6px 0px 0px 6px;' value='" + Temp_V[0] + "'></div><div style='width:50%;margin:10px 1% 10px 1%;float:left;'><div style='height:21px;overflow:hidden'>" + Title[9] + "</div><input placeholder='" + Title[9] + " 1' class='Box_Style' style='width:100%;text-align:center;font-size:24px;border:0px;margin:6px 0px 0px 6px;' value='" + Temp_V[1].replace(/\\\\/g,'\\') + "'></div><div style='width:18%;margin:10px 1% 10px 1%;float:right;'> <div class='Box_Style' style='width:100%;height:30px;margin:0px;cursor:pointer;' onclick='Looking_For_Link_Edit_Remove_Group_Button(" + Number0 + ")'>" + Title[10] + "</div><div class='Box_Style' style='width:100%;height:30px;margin:6px 0px 0px 0px;cursor:pointer;' onclick='Looking_For_Link_Edit_Group(" + Number0 + ")'>" + Title[11] + "</div></div></div>";
             }
             H_Top = H_Top - Edit_Table_Height;
             if (H_Top < 80) H_Top = 80;
@@ -3395,7 +3400,7 @@
             let Link_E = document.getElementById('S_Link_Link_' + number).getElementsByTagName('div')[0].getElementsByTagName('div');
             let Temp_V = [0];
             let Index_Old = Looking_For_Link_Edit_Link_Get_Group_Message(number);
-            Temp_V[0] = V_IN[0].value;
+            Temp_V[0] = V_IN[0].value.replace(/\\/g,'\\\\');
             var Group_Message = Looking_For_Link_Edit_Link_Find_Group(Temp_V[0], 1);
             if (Temp_V[0] == 0 || Temp_V[0] == '') {
                 Group_Message[0] = 0, Group_Message[1] = 0;
@@ -3411,7 +3416,7 @@
                 }
                 if (Group_Message[0] == -1) {
                     Group_Message = Looking_For_Link_Edit_Link_Get_Group_Message(number);
-                    V_IN[0].value = Group_Message[1];
+                    V_IN[0].value = Group_Message[1].replace(/\\/g,'\\\\');
                     Looking_For_Message_Box([Message[0], Message[1]]);
                     If_Error = 1;
                 }
@@ -3431,20 +3436,20 @@
                 If_Error=1;
             }*/
             if (V_IN[4] == '0') {
-                V_IN[4].value = Looking_For_Links[number][2];
+                V_IN[4].value = Looking_For_Links[number][2].replace(/\\\\/g,'\\');
                 Looking_For_Message_Box([Message[0], Message[3]]);
                 If_Error = 1;
             }
             if (If_Error) return -1;
             if (Index_Old[0] != V_IN[1].value) If_Change = 1;
-            Looking_For_Links[number][1] = V_IN[2].value;
-            Link_E[0].innerHTML = Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;');
+            Looking_For_Links[number][1] = V_IN[2].value.replace(/\\/g,'\\\\');
+            Link_E[0].innerHTML = Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
             Looking_For_Links[number][5] = Looking_For_Link_Editer_Go_Way_Value;
-            Looking_For_Links[number][6] = V_IN[3].value;
-            Looking_For_Links[number][2] = V_IN[4].value;
+            Looking_For_Links[number][6] = V_IN[3].value.replace(/\\/g,'\\\\');
+            Looking_For_Links[number][2] = V_IN[4].value.replace(/\\/g,'/');
             Link_E[1].innerHTML = Looking_For_Links[number][2];
-            Looking_For_Links[number][3] = V_IN[5].value;
-            Looking_For_Links[number][4] = V_IN[6].value;
+            Looking_For_Links[number][3] = V_IN[5].value.replace(/\\/g,'/');
+            Looking_For_Links[number][4] = V_IN[6].value.replace(/\\/g,'/');
             if (If_Change) {
                 Looking_For_Links[number][0] = Group_Message[1];
                 Temp_V[0] = Group_Message[0] + Number(V_IN[1].value);
@@ -3557,7 +3562,8 @@
             const Message=Looking_For_Language.TX_Link_edit_group;
             let If_Change = 0, Old_Group = 0, New_Group, Temp0 = 0;
             let Temp_E = event.target.parentElement.parentElement.getElementsByTagName('input');
-            if (Temp_E[1].value == '') Temp_E[0].value = 0;
+            let Temp_name=Temp_E[1].value.replace(/\\/g,'\\\\');
+            if (Temp_name == '') Temp_E[0].value = 0;
             if (Temp_E[0].value != Looking_For_Links[number][0]) {
                 Old_Group = Looking_For_Links[number][0];
                 New_Group = Temp_E[0].value;
@@ -3579,14 +3585,14 @@
                 Temp0 = Looking_For_S_Link_Group_Change(Old_Group, New_Group);
                 If_Change = 1;
             }
-            if (Temp_E[1].value != Looking_For_Links[number][1]) {
-                let Group_Message = Looking_For_Link_Edit_Link_Find_Group(Temp_E[1].value, 1);
+            if (Temp_name != Looking_For_Links[number][1]) {
+                let Group_Message = Looking_For_Link_Edit_Link_Find_Group(Temp_name, 1);
                 if (Group_Message[0] != -1) {
                     Looking_For_Links[Group_Message[0]][1] = Looking_For_Links[number][1];
-                    document.getElementById('S_Link_Link_' + Group_Message[0]).getElementsByTagName('div')[0].getElementsByTagName('div')[0].innerHTML = Looking_For_Links[Group_Message[0]][1];
+                    document.getElementById('S_Link_Link_' + Group_Message[0]).getElementsByTagName('div')[0].getElementsByTagName('div')[0].innerHTML = Looking_For_Links[Group_Message[0]][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
                 }
-                Looking_For_Links[number][1] = Temp_E[1].value;
-                document.getElementById('S_Link_Link_' + number).getElementsByTagName('div')[0].getElementsByTagName('div')[0].innerHTML = Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;');
+                Looking_For_Links[number][1] = Temp_name;
+                document.getElementById('S_Link_Link_' + number).getElementsByTagName('div')[0].getElementsByTagName('div')[0].innerHTML = Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
             }
             if (If_Change) {
                 Looking_For_Link_Edit_Move_Group(Old_Group, New_Group);
@@ -3725,8 +3731,8 @@
         function Looking_For_S_Link_Input_Show_Creater(number) {
             var Team_V = Looking_For_Links[number];
             var ID_T = 'S_Link_Link_', Style = ['Background_Un_Use_Mask', ''];
-            var IN_T = "<div onclick='Looking_For_Link_Editer(1)'><div class='Box_Style S_Link_Input_Box " + Style[Looking_For_Links[number][7]] + "' style='width:25%;'>" + Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;') + "</div><div class='Box_Style S_Link_Input_Box " + Style[Looking_For_Links[number][7]] + "' style='width:50%;word-wrap:break-word;'>" + Looking_For_Links[number][2] + "</div></div><div class='S_Background_Link_Button Box_Style' style='line-height:28px;' onclick='Looking_For_Link_Box_Button(3)'>╳</div><div class='S_Background_Link_Button Box_Style' style='line-height:15px' onclick='Looking_For_Link_Box_Button(2)'>︿</div><div class='S_Background_Link_Button Box_Style' style='line-height:24px' onclick='Looking_For_Link_Box_Button(1)'>-</div><div class='S_Background_Link_Button Box_Style' style='line-height:24px' onclick='Looking_For_Link_Box_Button(0)'>＋</div>";
-            if (Team_V[2] == 0) IN_T = "<div onclick='Looking_For_Link_Editer(0)'><div class='Box_Style S_Link_Input_Group_Box'>" + Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;') + "</div></div>";
+            var IN_T = "<div onclick='Looking_For_Link_Editer(1)'><div class='Box_Style S_Link_Input_Box " + Style[Team_V[7]] + "' style='width:25%;'>" + Team_V[1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\') + "</div><div class='Box_Style S_Link_Input_Box " + Style[Team_V[7]] + "' style='width:50%;word-wrap:break-word;'>" + Team_V[2] + "</div></div><div class='S_Background_Link_Button Box_Style' style='line-height:28px;' onclick='Looking_For_Link_Box_Button(3)'>╳</div><div class='S_Background_Link_Button Box_Style' style='line-height:15px' onclick='Looking_For_Link_Box_Button(2)'>︿</div><div class='S_Background_Link_Button Box_Style' style='line-height:24px' onclick='Looking_For_Link_Box_Button(1)'>-</div><div class='S_Background_Link_Button Box_Style' style='line-height:24px' onclick='Looking_For_Link_Box_Button(0)'>＋</div>";
+            if (Team_V[2] == 0) IN_T = "<div onclick='Looking_For_Link_Editer(0)'><div class='Box_Style S_Link_Input_Group_Box'>" + Team_V[1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\') + "</div></div>";
             if (Team_V[2] == 0) {
                 Looking_For_Div_Creater(ID_T + 'Box', ID_T + 'Group_Door_' + Team_V[0], 'S_Link_Group_Box_Box Auto_Door_Open', "<div id='" + ID_T + 'Group_' + Team_V[0] + "'></div>");
                 setTimeout(function () {
@@ -5327,7 +5333,7 @@
                 if (Looking_For_Links[var_number][2] == 0) {
                     var_box_id = "wellcome_button_box_box";
                     if (Looking_For_Links[var_number][0] != 0) {
-                        creat_div(var_number, "wellcome_button_box", "wellcome_button_box", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;'), var_box_id, 0);
+                        creat_div(var_number, "wellcome_button_box", "wellcome_button_box", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\'), var_box_id, 0);
                         var_box_id = "wellcome_button_box" + var_number;
                         var_box_open_id = "wellcome_button_box_open" + var_number;
                         Looking_For_Div_Creater(var_box_id, var_box_open_id, "grid_box_open");
@@ -5338,10 +5344,10 @@
                         creat_div(var_number, "wellcome_button_box", "wellcome_button_box_no_group", '', var_box_id, 0);
                         var_box_id = "wellcome_button_box" + var_number;
                         document.getElementById(var_box_id).getElementsByTagName('p')[0].remove();
-                        creat_div(var_number, "wellcome_button", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;'), var_box_id, 1);
+                        creat_div(var_number, "wellcome_button", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\'), var_box_id, 1);
                         var_box_id = "wellcome_button_box_box";
                     }
-                    else creat_div(var_number, "wellcome_button", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;'), var_box_open_id, 1);
+                    else creat_div(var_number, "wellcome_button", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\'), var_box_open_id, 1);
                 }
             }
         }
@@ -5369,7 +5375,7 @@
                             var_box_id = "side_table_width_send" + var_number;
                         }
                         /*bix_width_end*/
-                        creat_div(var_number, "side_table_links_box", "side_table_links_box", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;'), var_box_id, -1);
+                        creat_div(var_number, "side_table_links_box", "side_table_links_box", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\'), var_box_id, -1);
                         var_box_id = "side_table_links_box" + var_number;
                         var_box_open_id = "side_table_links_box_open" + var_number;
                         Looking_For_Div_Creater(var_box_id, var_box_open_id, "grid_box_open");
@@ -5394,7 +5400,7 @@
                             document.getElementById(var_box_id).getElementsByTagName('p')[0].remove();
                         }
                         /*link*/
-                        creat_div(var_number, "side_table_link", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;'), var_box_id, 1);
+                        creat_div(var_number, "side_table_link", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\'), var_box_id, 1);
                         if (Looking_For_Proview_Link_Box_Model != 1) {
                             document.getElementById("side_table_link" + var_number).className = 'side_table_links_box';
                             document.getElementById("side_table_link" + var_number).style["margin-top"] = '9px';
@@ -5408,7 +5414,7 @@
                         document.getElementById("side_table_link_ol" + var_number).innerHTML = "<p style='font-size:25px;margin-top:-5px;'>⇱</p>";
                         continue;
                     }
-                    creat_div(var_number, "side_table_link", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;'), var_box_open_id, 1);
+                    creat_div(var_number, "side_table_link", "side_table_link", Looking_For_Links[var_number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\'), var_box_open_id, 1);
                     /*duibi-box*/
                     creat_div(var_number, "side_table_link_ex", "side_table_link_ex", 0, "side_table_link" + var_number, 2);
                     document.getElementById("side_table_link_ex" + var_number).innerHTML = "<p style='font-size:14px;margin-top:3px;'>口|口</p>";
@@ -5753,12 +5759,12 @@
                 if (chars_show != -2) error_message_temp = Looking_For_Links[chars_show][6];
             }
             if (Looking_For_Message_Prompt_Time == -1) {
-                if (chars_show != -2) alert(Tipes[0] + "\n" + Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/g,'\\') + Tipes[1]);
+                if (chars_show != -2) alert(Tipes[0] + "\n" + Looking_For_Links[chars_show][1].replace(/\\\\/g,'\\') + " " + error_message_temp.replace(/\\\\/g,'\\') + Tipes[1]);
                 else alert(Tipes[0] + "\n" + Tipes[2]);
             }
             else if (Looking_For_Message_Prompt_Time == 0) { }
             else {
-                if (chars_show != -2) Looking_For_Message_Box([Tipes[0], Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/g,'\\') + Tipes[1]]);
+                if (chars_show != -2) Looking_For_Message_Box([Tipes[0], Looking_For_Links[chars_show][1].replace(/[ ]/g,'&ensp;').replace(/\\\\/g,'\\') + " " + error_message_temp.replace(/[ ]/g,'&ensp;').replace(/\\\\/g,'\\') + Tipes[1]]);
                 else Looking_For_Message_Box([Tipes[0], Tipes[2]]);
             }
         }
