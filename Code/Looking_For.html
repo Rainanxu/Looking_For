@@ -3068,7 +3068,7 @@
                 document.getElementById('S_L_Go_M3_Url_Value').value = Looking_For_Default_Web_Page_In_View;
             }
             else if (value == 3) {
-                Looking_For_Default_Web_Page_In_View = document.getElementById('S_L_Go_M3_Url_Value').value;
+                Looking_For_Default_Web_Page_In_View = document.getElementById('S_L_Go_M3_Url_Value').value.replace(/\\/g,'/');
             }
             Test_V[value] = 1;
             Looking_For_Model_Temp_To_Save = value;
@@ -5753,12 +5753,12 @@
                 if (chars_show != -2) error_message_temp = Looking_For_Links[chars_show][6];
             }
             if (Looking_For_Message_Prompt_Time == -1) {
-                if (chars_show != -2) alert(Tipes[0] + "\n" + Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/,'\\') + Tipes[1]);
+                if (chars_show != -2) alert(Tipes[0] + "\n" + Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/g,'\\') + Tipes[1]);
                 else alert(Tipes[0] + "\n" + Tipes[2]);
             }
             else if (Looking_For_Message_Prompt_Time == 0) { }
             else {
-                if (chars_show != -2) Looking_For_Message_Box([Tipes[0], Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/,'\\') + Tipes[1]]);
+                if (chars_show != -2) Looking_For_Message_Box([Tipes[0], Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/g,'\\') + Tipes[1]]);
                 else Looking_For_Message_Box([Tipes[0], Tipes[2]]);
             }
         }
