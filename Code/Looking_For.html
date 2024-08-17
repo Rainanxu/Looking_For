@@ -1869,12 +1869,12 @@
         }
         function Looking_For_S_Value_Load() {
             document.getElementById('S_Color_I_B_T_I').value = Number(Looking_For_Background_Turn_Time / 1000).toFixed(3) + ' s';
-            document.getElementById('S_Navigation_Hellow_I').value = Looking_For_Hellow_Word;
-            document.getElementById('S_Navigation_Tipes_I').value = Looking_For_NP_Tips_Word;
-            document.getElementById('S_Navigation_Input_Tipes_I').value = Looking_For_Input_Tips;
+            document.getElementById('S_Navigation_Hellow_I').value = Looking_For_Hellow_Word.replace(/\\\\/g,'\\');
+            document.getElementById('S_Navigation_Tipes_I').value = Looking_For_NP_Tips_Word.replace(/\\\\/g,'\\');
+            document.getElementById('S_Navigation_Input_Tipes_I').value = Looking_For_Input_Tips.replace(/\\\\/g,'\\');
             document.getElementById('S_N_Sleep_T_I').value = Looking_For_Sleep_Time + ' s';
-            document.getElementById('S_O_F_N_Value').value = Looking_For_File_Name_Temp_To_Save;
-            document.getElementById('S_L_Go_Error_Value').value = Looking_For_Error_Message;
+            document.getElementById('S_O_F_N_Value').value = Looking_For_File_Name_Temp_To_Save.replace(/\\\\/g,'\\');
+            document.getElementById('S_L_Go_Error_Value').value = Looking_For_Error_Message.replace(/\\\\/g,'\\');
             Looking_For_S_Others_Message_S_Load();
             Looking_For_S_Link_Go_Model_Change();
         }
@@ -3002,7 +3002,6 @@
         }
         function Looking_For_S_Word_Change(value) {
             let Text_in=event.target.value;
-            Text_in=Text_in.replace(/\\\\/g,'\\');
             Text_in=Text_in.replace(/\\/g,'\\\\');
             if (value == 0) {
                 Looking_For_Hellow_Word = Text_in;
@@ -5083,15 +5082,15 @@
                 ['Prompt', 'The file name has been modified to: ']
             ];*/
             const Tipes=Looking_For_Language.TX_Message_change_file_name;
-            Looking_For_File_Name_Temp_To_Save = document.getElementById('S_O_F_N_Value').value;
-            Looking_For_Message_Box([Tipes[0], Tipes[1] + Looking_For_File_Name_Temp_To_Save]);
+            Looking_For_File_Name_Temp_To_Save = document.getElementById('S_O_F_N_Value').value.replace(/\\/g,'\\\\');
+            Looking_For_Message_Box([Tipes[0], Tipes[1] + Looking_For_File_Name_Temp_To_Save.replace(/\\\\/g,'\\')]);
         }
         function Looking_For_Hellow_Words_Lode() {
-            document.getElementById('Hellow_Word_S').innerHTML = Looking_For_Hellow_Word.replace(/[ ]/g, '&ensp;');
-            document.getElementById('hellow_word').innerHTML = Looking_For_Hellow_Word.replace(/[ ]/g, '&ensp;');
-            document.getElementById('Looking_For_NP_Tips_Word').innerHTML = Looking_For_NP_Tips_Word.replace(/[ ]/g, '&ensp;');
-            document.getElementById('wellcome_chars_input').placeholder = Looking_For_Input_Tips;
-            document.getElementById('putin_value').placeholder = Looking_For_Input_Tips;
+            document.getElementById('Hellow_Word_S').innerHTML = Looking_For_Hellow_Word.replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
+            document.getElementById('hellow_word').innerHTML = Looking_For_Hellow_Word.replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
+            document.getElementById('Looking_For_NP_Tips_Word').innerHTML = Looking_For_NP_Tips_Word.replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
+            document.getElementById('wellcome_chars_input').placeholder = Looking_For_Input_Tips.replace(/\\\\/g,'\\');
+            document.getElementById('putin_value').placeholder = Looking_For_Input_Tips.replace(/\\\\/g,'\\');
         }
         function Looking_For_Chouse_Lode_Page() {
             if (Looking_For_Model > -1 && Looking_For_Model < 3) {
@@ -5718,7 +5717,7 @@
             }
             else if (model_clr == 1) {
                 Element_creat_box_in_url = document.getElementById('link_go_active');
-                Element_creat_box_in_url.href = Looking_For_File_Name + "#mode=3&urlnumber=" + url_go_number + "&keyword=" + Element_creat_box_in_keyword;
+                Element_creat_box_in_url.href = Looking_For_File_Name.replace(/\\\\/g,'\\') + "#mode=3&urlnumber=" + url_go_number + "&keyword=" + Element_creat_box_in_keyword;
                 if (ex_time_out > 0) {
                     if (link_go_way) show_message_box(-2);
                     else show_message_box(url_go_number);
