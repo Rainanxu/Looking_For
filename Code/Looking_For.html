@@ -4016,6 +4016,7 @@
             var Return = ['', 0, 0, 0];
             var Text_V = chars, Text_VI = [], V_X = 50, V_Y = 50, V_O = 1;
             var t1 = 0;
+            Text_V = Text_V.replace(/\\/g,'/');
             Text_VI = Text_V.split('，');
             Text_V = Text_V.split(',');
             if (Text_VI.length > Text_V) Text_V = Text_VI;
