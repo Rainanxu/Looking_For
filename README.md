@@ -61,8 +61,8 @@ Modify the code according to the following principles:
 * * Try to keep the omissionable `;`.
 * 2 Copy the code in the front of `/*CONFIG END*/` and the end of `<input placeholder="I" id="Looking_For_S_Save_Body" value="` and between the two, and paste it in `<input placeholder="I" id="Looking_For_S_Save_Body" value="">` `value`.
 * * Replace `"` with `LF34b;`.
-* * Replace`<`with`LF60b;`.
-* * Replace`>`with`LF62b;`.
+* * Replace `<` with `LF60b;`.
+* * Replace `>` with `LF62b;`.
 * * Remove all line breaks.
 
 After this modification, the program will run normally.
