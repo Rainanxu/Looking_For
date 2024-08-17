@@ -1796,7 +1796,10 @@
             I_E_2.placeholder = Texts[2];
         }
         function Looking_For_S_Link_Go_Error_Message_Change() {
-            Looking_For_Error_Message = document.getElementById('S_L_Go_Error_Value').value;
+            let Text_V=document.getElementById('S_L_Go_Error_Value').value;
+            Text_V=Text_V.replace(/\\\\/g,'\\');
+            Text_V=Text_V.replace(/\\/g,'\\\\');
+            Looking_For_Error_Message = Text_V;
             Looking_For_Error_Message_S = Looking_For_Error_Message;
         }
         function Looking_For_Language_Chouse(value) {
@@ -2998,16 +3001,19 @@
             document.body.style.setProperty('--Style_Scrollbar_Show', Looking_For_Background_Style[Looking_For_Dark_Light_Style][8]);
         }
         function Looking_For_S_Word_Change(value) {
+            let Text_in=event.target.value;
+            Text_in=Text_in.replace(/\\\\/g,'\\');
+            Text_in=Text_in.replace(/\\/g,'\\\\');
             if (value == 0) {
-                Looking_For_Hellow_Word = event.target.value;
+                Looking_For_Hellow_Word = Text_in;
                 Looking_For_Hellow_Word_S = Looking_For_Hellow_Word;
             }
             else if (value == 1) {
-                Looking_For_NP_Tips_Word = event.target.value;
+                Looking_For_NP_Tips_Word = Text_in;
                 Looking_For_NP_Tips_Word_S = Looking_For_NP_Tips_Word;
             }
             else {
-                Looking_For_Input_Tips = event.target.value;
+                Looking_For_Input_Tips = Text_in;
                 Looking_For_Input_Tips_S = Looking_For_Input_Tips;
             }
             Looking_For_Hellow_Words_Lode();
