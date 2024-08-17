@@ -1797,7 +1797,6 @@
         }
         function Looking_For_S_Link_Go_Error_Message_Change() {
             let Text_V=document.getElementById('S_L_Go_Error_Value').value;
-            Text_V=Text_V.replace(/\\\\/g,'\\');
             Text_V=Text_V.replace(/\\/g,'\\\\');
             Looking_For_Error_Message = Text_V;
             Looking_For_Error_Message_S = Looking_For_Error_Message;
@@ -5754,12 +5753,12 @@
                 if (chars_show != -2) error_message_temp = Looking_For_Links[chars_show][6];
             }
             if (Looking_For_Message_Prompt_Time == -1) {
-                if (chars_show != -2) alert(Tipes[0] + "\n" + Looking_For_Links[chars_show][1] + " " + error_message_temp + Tipes[1]);
+                if (chars_show != -2) alert(Tipes[0] + "\n" + Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/,'\\') + Tipes[1]);
                 else alert(Tipes[0] + "\n" + Tipes[2]);
             }
             else if (Looking_For_Message_Prompt_Time == 0) { }
             else {
-                if (chars_show != -2) Looking_For_Message_Box([Tipes[0], Looking_For_Links[chars_show][1] + " " + error_message_temp + Tipes[1]]);
+                if (chars_show != -2) Looking_For_Message_Box([Tipes[0], Looking_For_Links[chars_show][1] + " " + error_message_temp.replace(/\\\\/,'\\') + Tipes[1]]);
                 else Looking_For_Message_Box([Tipes[0], Tipes[2]]);
             }
         }
