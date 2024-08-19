@@ -1797,7 +1797,7 @@
         }
         function Looking_For_S_Link_Go_Error_Message_Change() {
             let Text_V=document.getElementById('S_L_Go_Error_Value').value;
-            Text_V=Text_V.replace(/\\/g,'\\\\');
+            Text_V=Text_V.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             Looking_For_Error_Message = Text_V;
             Looking_For_Error_Message_S = Looking_For_Error_Message;
         }
@@ -2254,7 +2254,7 @@
                 ['Bulk edit', 'Queried:', 'Added', 'Removed', 'Target not queried', '查询中...', 'Ordinal filtering is not available for adding']
             ];*/
             const Tipes=Looking_For_Language.TX_Img_Batch_Edit;
-            let rules_chars = document.getElementById('S_Color_I_B_E_C_V').value;
+            let rules_chars = document.getElementById('S_Color_I_B_E_C_V').value.replaceAll("'",'').replaceAll('"','');
             let rules_group = rules_chars.split(/[,，]/);
             let group_use = Looking_For_Img_Batch_Edit_Group_V;
             let number0 = 0;
@@ -3001,7 +3001,7 @@
         }
         function Looking_For_S_Word_Change(value) {
             let Text_in=event.target.value;
-            Text_in=Text_in.replace(/\\/g,'\\\\');
+            Text_in=Text_in.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             if (value == 0) {
                 Looking_For_Hellow_Word = Text_in;
                 Looking_For_Hellow_Word_S = Looking_For_Hellow_Word;
@@ -3068,7 +3068,7 @@
                 document.getElementById('S_L_Go_M3_Url_Value').value = Looking_For_Default_Web_Page_In_View;
             }
             else if (value == 3) {
-                Looking_For_Default_Web_Page_In_View = document.getElementById('S_L_Go_M3_Url_Value').value.replace(/\\/g,'/');
+                Looking_For_Default_Web_Page_In_View = document.getElementById('S_L_Go_M3_Url_Value').value.replace(/\\/g,'/').replaceAll("'",'').replaceAll('"','');
             }
             Test_V[value] = 1;
             Looking_For_Model_Temp_To_Save = value;
@@ -3085,7 +3085,7 @@
             const Key_Word_Tips=Looking_For_Language.TX_Link_auto_add_key_words;
             //const Next_Tips = ['已自动填写输入框，请前往确认。', 'The input box has been filled in automatically, please go to confirm.', '提示', 'Prompt'];
             const Next_Tips=Looking_For_Language.TX_Link_auto_add_next;
-            let Text_V = document.getElementById('S_L_Link_Auto_Add_Input').value.replace(/\\/g,'/');
+            let Text_V = document.getElementById('S_L_Link_Auto_Add_Input').value.replace(/\\/g,'/').replaceAll("'",'').replaceAll('"','');
             let Link_V = ['', '', ''];
             let Link_Add_E = document.getElementById('S_L_Link_Add_Input');
             if (Text_V == '') return 0;
@@ -3147,7 +3147,7 @@
             let tb=['Group name', 'Group number','Error',"The group number can only be between '1' and '1000'!",'The group name is too long!','The group number has been used, please replace the group number.','The group has been added'];*/
             const TE_T=Looking_For_Language.TX_Link_add_add_group;
             let Element_I = document.getElementById('S_L_Group_Add_Input'), Text_V = [0, ''], If_Error = 0;
-            let Text = Element_I.value.replace(/\\/g,'\\\\');
+            let Text = Element_I.value.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             Text = Text.split(',' + TE_T[1] + ' = ');
             Text_V[1] = Text[0];
             if (Text.length > 1) {
@@ -3206,7 +3206,7 @@
             let Text_V = Text_E.value;
             let Number0 = 0;
             let Number1;
-            Text_V = Text_V.replace(/，/g, ',');
+            Text_V = Text_V.replace(/，/g, ',').replaceAll("'",'').replaceAll('"','');
             Text_V = Text_V.split(',');
             Long = Text_V.length;
             for (; ;) {
@@ -3400,7 +3400,7 @@
             let Link_E = document.getElementById('S_Link_Link_' + number).getElementsByTagName('div')[0].getElementsByTagName('div');
             let Temp_V = [0];
             let Index_Old = Looking_For_Link_Edit_Link_Get_Group_Message(number);
-            Temp_V[0] = V_IN[0].value.replace(/\\/g,'\\\\');
+            Temp_V[0] = V_IN[0].value.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             var Group_Message = Looking_For_Link_Edit_Link_Find_Group(Temp_V[0], 1);
             if (Temp_V[0] == 0 || Temp_V[0] == '') {
                 Group_Message[0] = 0, Group_Message[1] = 0;
@@ -3416,7 +3416,7 @@
                 }
                 if (Group_Message[0] == -1) {
                     Group_Message = Looking_For_Link_Edit_Link_Get_Group_Message(number);
-                    V_IN[0].value = Group_Message[1].replace(/\\/g,'\\\\');
+                    V_IN[0].value = Group_Message[1].replace(/\\\\/g,'\\');
                     Looking_For_Message_Box([Message[0], Message[1]]);
                     If_Error = 1;
                 }
@@ -3442,14 +3442,14 @@
             }
             if (If_Error) return -1;
             if (Index_Old[0] != V_IN[1].value) If_Change = 1;
-            Looking_For_Links[number][1] = V_IN[2].value.replace(/\\/g,'\\\\');
+            Looking_For_Links[number][1] = V_IN[2].value.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             Link_E[0].innerHTML = Looking_For_Links[number][1].replace(/[ ]/g, '&ensp;').replace(/\\\\/g,'\\');
             Looking_For_Links[number][5] = Looking_For_Link_Editer_Go_Way_Value;
-            Looking_For_Links[number][6] = V_IN[3].value.replace(/\\/g,'\\\\');
-            Looking_For_Links[number][2] = V_IN[4].value.replace(/\\/g,'/');
+            Looking_For_Links[number][6] = V_IN[3].value.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
+            Looking_For_Links[number][2] = V_IN[4].value.replace(/\\/g,'/').replaceAll("'",'').replaceAll('"','');
             Link_E[1].innerHTML = Looking_For_Links[number][2];
-            Looking_For_Links[number][3] = V_IN[5].value.replace(/\\/g,'/');
-            Looking_For_Links[number][4] = V_IN[6].value.replace(/\\/g,'/');
+            Looking_For_Links[number][3] = V_IN[5].value.replace(/\\/g,'/').replaceAll("'",'').replaceAll('"','');
+            Looking_For_Links[number][4] = V_IN[6].value.replace(/\\/g,'/').replaceAll("'",'').replaceAll('"','');
             if (If_Change) {
                 Looking_For_Links[number][0] = Group_Message[1];
                 Temp_V[0] = Group_Message[0] + Number(V_IN[1].value);
@@ -3562,7 +3562,7 @@
             const Message=Looking_For_Language.TX_Link_edit_group;
             let If_Change = 0, Old_Group = 0, New_Group, Temp0 = 0;
             let Temp_E = event.target.parentElement.parentElement.getElementsByTagName('input');
-            let Temp_name=Temp_E[1].value.replace(/\\/g,'\\\\');
+            let Temp_name=Temp_E[1].value.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             if (Temp_name == '') Temp_E[0].value = 0;
             if (Temp_E[0].value != Looking_For_Links[number][0]) {
                 Old_Group = Looking_For_Links[number][0];
@@ -4072,7 +4072,7 @@
         }
         function Looking_For_S_Background_Input_Change() {
             var Number0 = Number(event.target.parentElement.id.replace(/[^\d]/g, ""));
-            var Text_V = event.target.value;
+            var Text_V = event.target.value.replaceAll("'",'').replaceAll('"','');
             Text_V = Looking_For_S_Background_Img_Link_Input_Chack(Text_V);
             Looking_For_Background_If_Use[Looking_For_Dark_Light_Style][Number0][1] = Text_V[0];
             Looking_For_Background_If_Use[Looking_For_Dark_Light_Style][Number0][2] = Text_V[1];
@@ -5087,7 +5087,7 @@
                 ['Prompt', 'The file name has been modified to: ']
             ];*/
             const Tipes=Looking_For_Language.TX_Message_change_file_name;
-            Looking_For_File_Name_Temp_To_Save = document.getElementById('S_O_F_N_Value').value.replace(/\\/g,'\\\\');
+            Looking_For_File_Name_Temp_To_Save = document.getElementById('S_O_F_N_Value').value.replace(/\\/g,'\\\\').replaceAll("'",'').replaceAll('"','');
             Looking_For_Message_Box([Tipes[0], Tipes[1] + Looking_For_File_Name_Temp_To_Save.replace(/\\\\/g,'\\')]);
         }
         function Looking_For_Hellow_Words_Lode() {
