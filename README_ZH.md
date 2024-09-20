@@ -9,9 +9,9 @@
 本程序支持高度自定义配置，用户可以自由决定目标页链接、色彩方案、背景图片、启动方式等。
 
 # 预览
-可访问以下链接预览页面：
-<https://rainanxu.github.io/Looking_For/>
-<https://looking-for.buesand.com/>
+可访问以下链接预览页面：<br>
+<https://rainanxu.github.io/Looking_For/><br>
+<https://looking-for.buesand.com/><br>
 
 # 使用
 本程序支持直接交互及链接控制。
