@@ -9,8 +9,8 @@ The program is a single-file web page that is small and easy to deploy.
 This program supports a high degree of customization configuration, and users can freely decide the target page link, color scheme, background image, launch method, etc.
 
 # Preview
-The following link preview page is available:
-<https://rainanxu.github.io/Looking_For/>
+The following link preview page is available:<br>
+<https://rainanxu.github.io/Looking_For/><br>
 <https://looking-for.buesand.com/>
 
 # Using
