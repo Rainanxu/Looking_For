@@ -11,7 +11,7 @@
 # 预览
 可访问以下链接预览页面：<br>
 <https://rainanxu.github.io/Looking_For/><br>
-<https://looking-for.buesand.com/><br>
+<https://looking-for.rainanxu.top/><br>
 
 # 使用
 本程序支持直接交互及链接控制。

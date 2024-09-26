@@ -12,7 +12,7 @@ This program supports a high degree of customization configuration, and users ca
 # Preview
 The following link preview page is available:<br>
 <https://rainanxu.github.io/Looking_For/><br>
-<https://looking-for.buesand.com/><br>
+<https://looking-for.rainanxu.top/><br>
 
 # Using
 This program supports direct interaction and link control.
