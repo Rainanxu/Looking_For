@@ -164,6 +164,9 @@ body {
 .list_keep_link{
     background: #04d1f5;
 }
+.list_pass{
+    background: #04f518;
+}
 .list_error{
     background: #ff1b1b;
 }
@@ -181,10 +184,10 @@ body {
 .files_type_css{
     font-style: normal;
     color: #1bff8d;
-    background: #b9b9b9;
+    background: #b9b9b99d;
 }
 .files_type_js{
     font-style: normal;
     color: #a41bff;
-    background: #defdb4;
+    background: #defdb49d;
 }

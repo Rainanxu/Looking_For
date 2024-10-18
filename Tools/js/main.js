@@ -12,10 +12,9 @@ function start_file_loaded() {
     let text_t=remove_data_or_exegesis_keep_line(text_files[0]);
     console.log(text_t);
     */
-    console.log('main HTML file chanking...');
+    console.log('main HTML file chacking...');
     chack_HTML_line_break_error();
-    console.log('main HTML file chank pass.');
-    console.log('main HTML file chanking links...');
+    console.log('main HTML file chacking links...');
     get_link_list(text_files[0]);
     //console.log(HTML_main_file, link_list, script_list);
     files_list_step_style_load();
@@ -29,9 +28,9 @@ function link_file_loaded(file_index_in,type_css){
         console.log("Loaded link file ["+link_list[list_index].url+"]");
         console.log("chacking link file...");
         error_list=chack_js_css_line_break_error(text_files[file_index_in],true);
-        link_list[list_index].use=1;
+        link_list[list_index].use=3;
         if(error_list.length!=0){
-            link_list[list_index].use=3;
+            link_list[list_index].use=4;
         }
         console.log('error line index',error_list);
     }
@@ -40,9 +39,9 @@ function link_file_loaded(file_index_in,type_css){
         console.log("Loaded link file ["+script_list[list_index].url+"]");
         console.log("chacking link file...");
         error_list=chack_js_css_line_break_error(text_files[file_index_in],false);
-        script_list[list_index].use=1;
+        script_list[list_index].use=3;
         if(error_list.length!=0){
-            script_list[list_index].use=3;
+            script_list[list_index].use=4;
         }
         console.log('error line index',error_list);
     }
@@ -136,8 +135,8 @@ function chack_data(text_in){
 function chack_in_data_or_exegesis(text_in) {
     let text_T = text_in;
     let RE_0 = /("([^"\r\n]){0,}")|('([^'\r\n]){0,}')/;
-    let RE_1 = /(\/\/([^\r\n]){0,})|(\/\*([^(\*\/)]){0,}\*\/)/;
-    let RE_2 = /<!--([^(-->)]){0,}-->/;
+    let RE_1 = /(\/\/([^\r\n]){0,})|(\/\*([\s\S]){0,}?\*\/)/;
+    let RE_2 = /<!--([\s\S]){0,}?-->/;
     let RE_0_1 = /(")|(')/;
     let RE_1_1 = /(\/\/)|(\/*)/;
     let RE_2_1 = /<!--/;
@@ -210,38 +209,6 @@ function chack_in_data_or_exegesis(text_in) {
         chack_A_R[R1]();
         chack_A_R[R0]();
     }
-    /*
-    number0 = text_T.search(RE_0);
-    number1 = text_T.search(RE_1);
-    number1 = text_T.search(RE_2);
-    for (; ;) {
-        //console.log('chack',number0,number1,text_T);
-        if (number0 == -1) {
-            if (number1 == -1) break;
-            text_T = text_T.slice(number1);
-            text_T = text_T.replace(RE_1, '');
-            number1 = text_T.search(RE_1);
-        }
-        else if (number1 == -1) {
-            if (number0 == -1) break;
-            text_T = text_T.slice(number0);
-            text_T = text_T.replace(RE_0, '');
-            number0 = text_T.search(RE_0);
-        }
-        else if (number0 <= number1) {
-            text_T = text_T.slice(number0);
-            text_T = text_T.replace(RE_0, '');
-            number0 = text_T.search(RE_0);
-            number1 = text_T.search(RE_1);
-        }
-        else {
-            text_T = text_T.slice(number1);
-            text_T = text_T.replace(RE_1, '');
-            number0 = text_T.search(RE_0);
-            number1 = text_T.search(RE_1);
-        }
-    }
-    */
     R0 = text_T.search(RE_0_1);
     R1 = text_T.search(RE_1_1);
     R1 = text_T.search(RE_2_1);
@@ -249,16 +216,11 @@ function chack_in_data_or_exegesis(text_in) {
     else if(R1!=-1)return false;
     else if(R2!=-1)return false;
     else return true;
-    /*
-    number0 = text_T.search(RE_0_1);
-    number1 = text_T.search(RE_1_1);
-    if (number0 == -1 && number1 == -1) return true;
-    else return false;*/
 }
 function remove_data_or_exegesis_keep_line(text_in) {
     let text_T = text_in;
     let RE_0 = /("([^"\r\n]){0,}")|('([^'\r\n]){0,}')/;
-    let RE_1 = /(\/\/([^\r\n]){0,})|(\/\*([^(\*\/)]){0,}\*\/)/;
+    let RE_1 = /(\/\/([^\r\n]){0,})|(\/\*([\s\S]){0,}?\*\/)/;
     let RE_2 = /<!--([\s\S]){0,}?-->/;
     let line_temp="";
     let V_T=[0,0,0];
@@ -336,6 +298,8 @@ function remove_data_or_exegesis_keep_line(text_in) {
 }
 let HTML_main_file = "";
 let HTML_main_file_use=0;
+let HTML_main_file_error_lines_script=[];
+let HTML_main_file_error_lines_style=[];
 let link_list = [
     {
         url: "",
@@ -343,7 +307,8 @@ let link_list = [
         0 unload
         1 load
         2 keep
-        3 error
+        3 pass
+        4 error
         */
         use: 0
     }
@@ -355,7 +320,8 @@ let script_list = [
         0 unload
         1 load
         2 keep
-        3 error
+        3 pass
+        4 error
         */
         use: 0
     }
@@ -483,7 +449,7 @@ function show_files_list() {
         '<div id="files_box_list_',
         '" class="files_box_list ',
         '"><div class="files_list_chack">',
-        ' wait chack</div><label class="files_list_button" for="files_in" onclick="files_list_upload_lable(',
+        ' <i>wait upload</i></div><label class="files_list_button" for="files_in" onclick="files_list_upload_lable(',
         ')">upload file</label><div class="files_list_button" onclick="files_list_keep_link(',
         ')">keep_link</div></div>'
     ];
@@ -525,13 +491,22 @@ function files_list_upload_lable(index_in = 0, type = 0){
 }
 function files_list_upload() { 
     let F_E=document.getElementById('files_in');
+    let E_M=document.getElementById('output_i');
+    let home_E;
+    let number0=files_index-1;
+    E_M.innerHTML="Loading...";
+    console.log('nnnnn',files_index);
     if(files_type_in==0){
         console.log('get_file',files_index,'type css');
+        home_E=document.getElementById('files_box_list_css_'+number0);
+        if(home_E!=null)home_E.getElementsByTagName('i')[0].innerHTML="chacking...";
         get_files(F_E,files_index,false,true);
     }
     else if(files_type_in==1){
         files_index=link_list.length+files_index;
         console.log('get_file',files_index,'type JavaScript');
+        home_E=document.getElementById('files_box_list_js_'+number0);
+        if(home_E!=null)home_E.getElementsByTagName('i')[0].innerHTML="chacking...";
         get_files(F_E,files_index,false,false);
     }
     return 0;
@@ -553,10 +528,13 @@ function files_list_keep_link(index_in = 0, type = 0) {
     return 0;
 }
 function files_list_step_style_load(){
-    let home_E=document.getElementById('output_i');
+    let E_M=document.getElementById('output_i');
+    let home_E;
     let number0=0,number1=1,number2=2;
     let Long=1,Long1=link_list.length,Long2=script_list.length;
-    let color=['#e1ff75','#98e1fd','#04d1f5','#ff1b1b'];
+    let color=['#e1ff75','#98e1fd','#04d1f5','#04f518','#ff1b1b'];
+    let color_class=['list_unload','list_load','list_keep_link','list_pass','list_error'];
+    let type_text=['wait load','wait chack','keep link','pass','error'];
     let style_T=['linear-gradient(90deg',')']
     let text_input="";
     Long=1+Long1+Long2;
@@ -564,21 +542,30 @@ function files_list_step_style_load(){
     text_input=style_T[0]+','+color[HTML_main_file_use]+' '+Long+'%';
     for(;;){
         if(number0>=Long1)break;
+        home_E=document.getElementById('files_box_list_css_'+number0);
+        if(home_E!=null){
+            home_E.className="files_box_list "+color_class[link_list[number0].use];
+            home_E.getElementsByTagName('i')[0].innerHTML=type_text[link_list[number0].use];
+        }
         text_input=text_input+','+color[link_list[number0].use]+' '+number1*Long+'%'+','+color[link_list[number0].use]+' '+number2*Long+'%';
         number0++,number1++,number2++;
     }
     number0=0;
     for(;;){
         if(number0>=Long2)break;
+        home_E=document.getElementById('files_box_list_js_'+number0);
+        if(home_E!=null){
+            home_E.className="files_box_list "+color_class[script_list[number0].use];
+            home_E.getElementsByTagName('i')[0].innerHTML=type_text[script_list[number0].use];
+        }
         text_input=text_input+','+color[script_list[number0].use]+' '+number1*Long+'%'+','+color[script_list[number0].use]+' '+number2*Long+'%';
         number0++,number1++,number2++;
     }
     text_input=text_input+style_T[1];
     //console.log(text_input);
-    home_E.style.background=text_input;
+    E_M.style.background=text_input;
     return 0;
 }
-let chack_HTML_line_break_error_text_temp_file="";
 function chack_HTML_line_break_error(){
     let text_T=text_files[0];
     let RE_scritp=/((<)|(\\x3C))script([^>]){0,}>([\s\S]){0,}?((<)|(\\x3C))\/script>/i;
@@ -707,9 +694,19 @@ function chack_HTML_line_break_error(){
         }
         cut_get_index++;
     }
-    //console.log('css:')
-    //console.log('ssl',cut_get_lines_style);
-    //console.log('scl',style_error_lines);
+    HTML_main_file_error_lines_script=script_error_lines;
+    console.log("error line index type:[JavaScript]",HTML_main_file_error_lines_script);
+    HTML_main_file_error_lines_style=style_error_lines;
+    console.log("error line index type:[css]",HTML_main_file_error_lines_script);
+    if(script_error_lines.length>=1){
+        if(style_error_lines.length>=1)HTML_main_file_use=4;
+        console.log("main HTML file chack error!s");
+    }
+    else{
+        HTML_main_file_use=3;
+        console.log("main HTML file chack pass.");
+    }
+    return 0;
 }
 /**
  * 
