@@ -1,0 +1,767 @@
+/*Version: 2.01.61 */
+
+body {
+    --Back_Color_Board: 0;
+    --Back_Color_Back: 0;
+    --Back_Color: 0;
+    --Back_Color_Hover: 0;
+    --Back_Color_Active: 0;
+    --Back_Color_Text: 0;
+    --Back_Border_Radius: 0;
+    --Back_Line_Width: 0;
+    --Iframe_clos_button_height: 0;
+    --Style_Scrollbar_Show: 'none';
+    user-select: auto;
+    -webkit-user-select: auto;
+}
+
+.Remove_spacing_between_divs {
+    margin: 0;
+    padding: 0;
+    background: var(--Back_Color_Board);
+}
+
+.Remove_spacing_between_divs::-webkit-scrollbar {
+    display: none;
+}
+
+.Home_Box {
+    width: 100vw;
+    height: 100vh;
+    min-width: 400px;
+    min-height: 400px;
+    overflow: hidden;
+    border-radius: 0px;
+    color: var(--Back_Color_Text);
+    position: relative;
+}
+
+.Home_Background_Box {
+    z-index: -1;
+}
+
+.Home_Topground_Box {
+    z-index: 20;
+}
+
+.Navigation_Active {
+    cursor: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.Img_BackgroundB {
+    border-radius: 0px;
+    object-fit: cover;
+    object-position: 100% 100%;
+    opacity: 0;
+    transition: object-position 1.2s ease 0s, opacity 1.5s ease-out 0s;
+}
+
+.Img_Background {
+    border-radius: 0px;
+    object-fit: cover;
+    object-position: 0% 100%;
+    opacity: 0;
+    transition: object-position 1.2s ease 0s, opacity 1.5s ease-out 0s;
+}
+
+.Navigation_Box {
+    height: 0px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.Sitting_Button_Active {
+    width: 20%;
+    min-width: 300px;
+    height: 40%;
+    min-height: 400px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.Sitton_Button_Box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    overflow: visible;
+}
+
+.Sitting_Button {
+    pointer-events: auto;
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+    float: right;
+    margin-right: 20px;
+    margin-top: -40px;
+    font-size: 40px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 20px;
+    transform: rotate(0dge);
+    -webkit-transform: rotate(0deg);
+    transition: margin-top 0.8s, -webkit-transform 0.5s;
+}
+
+.Sitting_Button:hover {
+    transform: rotate(90dge);
+    -webkit-transform: rotate(90deg);
+    transition: -webkit-transform 0.5s;
+}
+
+.Sitting_Button:active {
+    transform: rotate(180dge);
+    -webkit-transform: rotate(180deg);
+    transition: -webkit-transform 0.5s;
+}
+
+.View_Box {
+    height: 0px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.Sitting_Box {
+    position: relative;
+    overflow: hidden;
+    z-index: 30;
+}
+
+.Sitting_Side_Table {
+    width: 18%;
+    height: 70%;
+    margin-top: 10%;
+    margin-left: 2%;
+    overflow: auto;
+    float: left;
+}
+
+.S_S_T_L {
+    width: 80%;
+    min-height: 40px;
+    margin-top: 6px;
+    margin-left: 10%;
+    cursor: pointer;
+}
+
+.Sitting_Centel_Table {
+    width: 72%;
+    height: 94%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    margin-right: 7%;
+    overflow: auto;
+    float: right;
+}
+
+.S_Value_Box {
+    width: 94%;
+    overflow: auto;
+    margin-left: 5%;
+}
+
+.S_Language_Chouse_Pad {
+    display: flex;
+    overflow: hidden;
+    flex-flow: column;
+    transition: all 1s;
+}
+
+.S_Min_Height_42 {
+    min-height: 42px !important;
+}
+
+.S_Max_width_200 {
+    max-width: 200px !important;
+}
+
+.S_Color_Style_Box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.S_Chose_Box {
+    width: auto;
+    float: left;
+    margin-left: 2px;
+    margin-top: 2px;
+    position: relative;
+}
+
+.S_Value_Chouse_Box {
+    width: 10px;
+    height: 10px;
+    float: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.Color_Broad {
+    width: 60%;
+    height: 40px;
+    float: left;
+    margin-left: 20%;
+}
+
+.S_Color_I_S {
+    width: 236px;
+}
+
+.S_Color_Chouse_Table {
+    width: 240px;
+    height: 0px;
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none;
+}
+
+.S_Color_Img_Show_Inter {
+    overflow: hidden;
+    height: 0px;
+    width: 92%;
+    margin: 10px 4% 10px 4%;
+}
+
+.S_Color_Img_Show_Link_Box {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.S_Color_Img_Show_Show_Box {
+    overflow-y: hidden;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+
+.S_Background_Link_Box {
+    width: 99%;
+}
+
+.S_Background_Link_Show_Box {
+    position: relative;
+    margin: 0px 30px 27px 0px;
+}
+
+.S_Link_Group_Box {
+    margin-left: 10%;
+    margin-top: 32px;
+    margin-bottom: 6px;
+    width: 80%;
+}
+
+.S_Link_Group_Box_Box {
+    width: 100%;
+    display: grid;
+}
+
+.S_Link_Input_Group_Box {
+    width: 60%;
+    height: 42px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 6px;
+    text-align: center;
+    float: left;
+    font-size: 24px;
+    line-height: 42px;
+    cursor: pointer;
+}
+
+.S_Background_Link_Button {
+    min-width: 34px;
+    width: 5%;
+    margin-left: 6px;
+    margin-top: 3px;
+    height: 28px;
+    float: right;
+    text-align: center;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.S_Background_Link_Input {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 5%;
+    width: 90%;
+    overflow-y: hidden;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.S_Link_Input_Box {
+    text-align: center;
+    float: left;
+    line-height: 28px;
+    margin-top: 3px;
+    margin-left: 6px;
+    cursor: pointer;
+    min-height: 28px;
+}
+
+.S_Link_Hind_Edit {
+    background: var(--Back_Color);
+    height: 0px;
+    overflow: hidden;
+}
+
+.S_Link_Group_Edit {
+    background: var(--Back_Color_Board);
+    height: 80px;
+    width: 50%;
+    margin-left: 25%;
+    overflow: hidden;
+}
+
+.S_Link_Edit {
+    background: var(--Back_Color_Board);
+    height: 200px;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 50%;
+    overflow: hidden;
+}
+
+.S_Link_Show_Input_USE {
+    margin-top: 3px;
+    width: 70%;
+    overflow-y: hidden;
+    color: var(--Back_Color_Text);
+    background: var(--Back_Color);
+    transition: all 0.8s;
+}
+
+.S_Link_Show_Input_USE:hover {
+    background: var(--Back_Color_Hover);
+}
+
+.S_Link_Show_Input_USE:active {
+    background: var(--Back_Color_Active);
+    transition: background 0.3s;
+}
+
+.S_Link_Show_Input_UNUSE {
+    margin-top: 3px;
+    width: 70%;
+    overflow-y: hidden;
+    color: var(--Back_Color_Text);
+    background: repeating-linear-gradient(60deg, var(--Back_Color_Text), var(--Back_Color_Text) var(--Back_Line_Width), var(--Back_Color) 0, var(--Back_Color) 13px);
+    transition: all 0.8s;
+}
+
+.S_Link_Show_Input_UNUSE:hover {
+    background: var(--Back_Color_Hover);
+}
+
+.S_Link_Show_Input_UNUSE:active {
+    background: var(--Back_Color_Active);
+    transition: background 0.3s;
+}
+
+.S_Background_Link_Show_Img {
+    max-height: 50vh;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: var(--Back_Border_Radius);
+    vertical-align: bottom;
+    object-fit: contain;
+    transition: max-width 0.3s, max-height 0.3s;
+}
+
+.S_Background_Link_Show_R_X {
+    position: absolute;
+    margin-left: 5%;
+    width: 90%;
+}
+
+.S_Background_Link_Show_R_Y_W {
+    position: absolute;
+    cursor: pointer;
+    background: var(--Back_Color);
+    width: 15px;
+    height: 100%;
+    top: 0px;
+    right: -20px;
+}
+
+.S_Background_Link_Show_R_Y_Slid {
+    position: relative;
+    pointer-events: none;
+    width: 100%;
+    transition: all 0s;
+}
+
+.S_Background_Link_Show_R_Y_Slid_Lide {
+    pointer-events: none;
+    position: absolute;
+    left: -2px;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    border-radius: 1%;
+    border: solid 2px var(--Back_Color_Text);
+}
+
+.S_Background_Link_Show {
+    position: relative;
+    margin: 27px 5% 0px 5%;
+    width: 90%;
+    min-height: 20px;
+    min-width: 40px;
+}
+
+.S_Link_Show_Img_Mask_USE {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transition: all 0.8s;
+}
+
+.S_Link_Show_Img_Mask_UNUSE {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    background: repeating-linear-gradient(60deg, var(--Back_Color_Text), var(--Back_Color_Text) var(--Back_Line_Width), hsla(0, 0%, 0%, 0) 0, hsla(0, 0%, 0%, 0) 13px);
+    transition: all 0.8s;
+}
+
+.Root_Box {
+    width: 100%;
+    height: 0px;
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+.Box_Style {
+    color: var(--Back_Color_Text);
+    background: var(--Back_Color);
+    transition: background 0.8s;
+}
+
+.Box_Style:hover {
+    background: var(--Back_Color_Hover);
+}
+
+.Box_Style:active {
+    background: var(--Back_Color_Active);
+    transition: background 0.3s;
+}
+
+.Button_Click {
+    cursor: pointer;
+}
+
+.Background_Color {
+    color: var(--Back_Color_Text);
+    background: var(--Back_Color_Back);
+    transition: all 1s;
+}
+
+.Background_Color_Board {
+    background: var(--Back_Color_Board);
+}
+
+.Background_Color_Null {
+    background: var(--Back_Color);
+}
+
+.Background_Color_Hover {
+    background: var(--Back_Color_Hover);
+}
+
+.Background_Color_Active {
+    background: var(--Back_Color_Active);
+}
+
+.Background_Color_Text {
+    background: var(--Back_Color_Text);
+}
+
+.Text_Center {
+    text-align: center;
+}
+
+.New_Line {
+    width: 100%;
+    height: 3px;
+    overflow: auto;
+}
+
+.S_Time_Out_Input {
+    position: absolute;
+    top: 0px;
+    left: 104px;
+    width: 100px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    word-break: break-all;
+}
+
+h3 {
+    font-size: 32px;
+    margin-left: 64px;
+    margin-top: 100px;
+}
+
+h4 {
+    font-size: 26px;
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 22px;
+    margin: 6px;
+}
+
+p {
+    font-size: 36px;
+    pointer-events: none;
+}
+
+.Background {
+    position: absolute;
+    display: none;
+    transition: width 2s;
+}
+
+.Background_Fixed {
+    position: fixed;
+    display: none;
+    transition: width 2s;
+}
+
+.Color_Line {
+    background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%) !important;
+}
+
+.BgA {
+    left: 0;
+}
+
+.BgB {
+    right: 0;
+}
+
+.S_Full {
+    width: 100%;
+    height: 100%;
+}
+
+.No_Tach {
+    pointer-events: none;
+}
+
+.Box_Side_Line {
+    border-style: solid;
+    border-width: var(--Back_Line_Width);
+}
+
+.Line_Width {
+    margin-top: 13px;
+    margin-bottom: 15px;
+    height: var(--Back_Line_Width);
+}
+
+.Box_Talbe {
+    max-height: 60px;
+    overflow: hidden;
+    transition: max-height 0.6s;
+}
+
+.Box_Open {
+    display: block;
+    width: 20px;
+    height: 20px;
+    float: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: 0px;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: rotate(-45deg);
+    background: linear-gradient(45deg, var(--Back_Color_Text), var(--Back_Color_Text) 50%, hsla(0, 0%, 0%, 0.00) 50%, hsla(0, 0%, 0%, 0.00) 100%);
+}
+
+.Box_Close {
+    display: block;
+    width: 20px;
+    height: 20px;
+    float: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: 7px;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: rotate(-135deg);
+    background: linear-gradient(45deg, var(--Back_Color_Text), var(--Back_Color_Text) 50%, hsla(0, 0%, 0%, 0.00) 50%, hsla(0, 0%, 0%, 0.00) 100%);
+}
+
+input {
+    width: auto;
+    height: auto;
+    overflow: auto;
+    font-size: 20px;
+    line-height: 22px;
+    border-radius: var(--Back_Border_Radius);
+}
+
+div {
+    border-radius: var(--Back_Border_Radius);
+    transition: all 0.6s;
+    scrollbar-width: var(--Style_Scrollbar_Show);
+    scrollbar-color: var(--Back_Color) rgba(100, 100, 100, 0.1);
+    scrollbar-gutter: auto;
+}
+
+div::-webkit-scrollbar {
+    display: var(--Style_Scrollbar_Show);
+    width: 10px;
+    height: 10px;
+}
+
+div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--Back_Color);
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+
+input[type=range] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 90%;
+    height: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+    background: var(--Back_Color);
+    border-radius: var(--Back_Border_Radius);
+    overflow: visible;
+    cursor: pointer;
+}
+
+/*chrome*/
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 18px;
+    border-radius: 1%;
+    border: solid 2px var(--Back_Color_Text);
+}
+
+/*Filefox*/
+input[type=range]::-moz-range-thumb {
+    width: 1px;
+    height: 18px;
+    border-radius: 1%;
+    background-color: #0000;
+    border: solid 2px var(--Back_Color_Text);
+}
+
+/*IE*/
+input[type=range]::-ms-thumb {
+    width: 5px;
+    height: 18px;
+    border-radius: 1%;
+    border: solid 2px var(--Back_Color_Text);
+}
+
+.Auto_Door_Open {
+    display: grid;
+    overflow: hidden;
+    grid-template-rows: 0fr;
+    grid-template-columns: 100%;
+    transition: all 1s;
+}
+
+.Auto_Door_Open>* {
+    min-height: 0;
+    padding: 0 10px;
+}
+
+.Message_Space {
+    display: grid;
+    position: absolute;
+    pointer-events: none;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: -64px;
+    min-width: 400px;
+    width: 30%;
+    height: auto;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.Message_Space_Keep {
+    display: grid;
+    position: absolute;
+    pointer-events: auto;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: -64px;
+    min-width: 400px;
+    width: 30%;
+    height: auto;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.Message_Box {
+    background: var(--Back_Color);
+    margin-top: 12px;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.6s, grid-template-rows 0.4s;
+}
+
+.Message_Box:hover {
+    background: var(--Back_Color_Hover);
+}
+
+.Message_Box_Test {
+    text-align: center;
+    font-size: 15px;
+}
+
+.Background_Un_Use_Mask {
+    background: repeating-linear-gradient(60deg, var(--Back_Color_Text), var(--Back_Color_Text) var(--Back_Line_Width), var(--Back_Color) 0, var(--Back_Color) 13px);
+}
