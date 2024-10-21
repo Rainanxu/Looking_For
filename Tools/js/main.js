@@ -31,6 +31,7 @@ function link_file_loaded(file_index_in,type_css){
         link_list[list_index].use=3;
         if(error_list.length!=0){
             link_list[list_index].use=4;
+            link_list[list_index].error_line=error_list;
         }
         console.log('error line index',error_list);
     }
@@ -42,6 +43,7 @@ function link_file_loaded(file_index_in,type_css){
         script_list[list_index].use=3;
         if(error_list.length!=0){
             script_list[list_index].use=4;
+            script_list[list_index].error_line=error_list;
         }
         console.log('error line index',error_list);
     }
@@ -310,7 +312,8 @@ let link_list = [
         3 pass
         4 error
         */
-        use: 0
+        use: 0,
+        error_line:[]
     }
 ];
 let script_list = [
@@ -323,7 +326,8 @@ let script_list = [
         3 pass
         4 error
         */
-        use: 0
+        use: 0,
+        error_line:[]
     }
 ];
 let link_cut_in_code = "||--|Looking_For_LInK_cUt_In_||--|";
@@ -365,7 +369,7 @@ function get_link_list(text_in) {
                 if (temp1 >= 0) {
                     //console.log('link true')
                     //console.log('ikkkkkkkkkkkkkkkkkk',RE_link_css_utl.exec(list_cut_out_temp[cut_index]),list_cut_out_temp,cut_index);
-                    link_list[link_list_index] = { url: "", use: 0 };
+                    link_list[link_list_index] = { url: "", use: 0,error_line:[] };
                     link_list[link_list_index].url = RE_link_css_url.exec(list_cut_out_temp[cut_index]);
                     if (link_list[link_list_index].url !== null) {
                         link_list[link_list_index].url = link_list[link_list_index].url[0];
@@ -416,7 +420,7 @@ function get_link_list(text_in) {
             else {
                 number2 = number0;
                 //console.log('iddddddddddddddddd',RE_script_utl.exec(list_cut_out_temp[cut_index]),list_cut_out_temp,cut_index);
-                script_list[link_list_index] = { url: "", use: 0 };
+                script_list[link_list_index] = { url: "", use: 0,error_line:[] };
                 script_list[link_list_index].url = RE_script_utl.exec(list_cut_out_temp[cut_index]);
                 if (script_list[link_list_index].url !== null) {
                     script_list[link_list_index].url = script_list[link_list_index].url[0];
@@ -495,7 +499,6 @@ function files_list_upload() {
     let home_E;
     let number0=files_index-1;
     E_M.innerHTML="Loading...";
-    console.log('nnnnn',files_index);
     if(files_type_in==0){
         console.log('get_file',files_index,'type css');
         home_E=document.getElementById('files_box_list_css_'+number0);
@@ -564,6 +567,60 @@ function files_list_step_style_load(){
     text_input=text_input+style_T[1];
     //console.log(text_input);
     E_M.style.background=text_input;
+    chack_files_loaded();
+    return 0;
+}
+function chack_files_loaded(){
+    console.log('loaded chack');
+    let if_error=false;
+    let long=link_list.length;
+    let number0=0;
+    let load=[true,false,false,false,false];
+    let error=[false,false,false,false,true];
+    if(load[HTML_main_file_use])return 0;
+    for(;;){
+        if(number0>=long)break;
+        if(load[link_list[number0].use])return 0;
+        number0++;
+    }
+    number0=0,long=script_list.length;
+    for(;;){
+        if(number0>=long)break;
+        if(load[script_list[number0].use])return 0;
+        number0++;
+    }
+    // chack error
+    if(error[HTML_main_file_use])if_error=true;
+    else {
+        number0=0,long=link_list.length;
+        for(;;){
+            if(number0>=long)break;
+            if(error[link_list[number0].use]){
+                if_error=true;
+                break;
+            }
+            number0++;
+        }
+        if(!if_error){
+            number0=0,long=script_list.length;
+            for(;;){
+                if(number0>=long)break;
+                if(error[script_list[number0].use]){
+                    if_error=true;
+                    break;
+                }
+                number0++;
+            }
+        }
+    }
+    if(if_error){
+        console.log('loaded show error');
+        mix_code_error_line();
+    }
+    else{
+        console.log('loaded show download');
+        show_download();
+    }
     return 0;
 }
 function chack_HTML_line_break_error(){
@@ -773,6 +830,159 @@ function chack_js_css_line_break_error(text_in,type_css=false){
         number0++;
     }
     return error_array;
+}
+/**
+ * file
+ * type 0 right
+ *      1 error
+ *      2 null or ...
+ * line 
+ * value tests
+ */
+let files_name_list=["HTML [css]","HTML [JavaScript]"];
+let code_error_lines_list=[];
+function mix_code_error_line(){
+    let line_index=0;
+    let text_array=[];
+    let long=0,long1=0;
+    let number_f=2;
+    let number0=0,number1=0,number2=0
+    function name_list_maker(){
+        let number_0=0,number_1=2;
+        let long_0=link_list.length;
+        for(;;){
+            if(number_0>=long_0)break;
+            files_name_list[number_1]=link_list[number_0].url;
+            number_0++,number_1++;
+        }
+        number_0=0;
+        long_0=link_list.length;
+        for(;;){
+            if(number_0>=long_0)break;
+            files_name_list[number_1]=script_list[number_0].url;
+            number_0++,number_1++;
+        }
+        return 0;
+    }
+    function pull_model(name_in,type_in,line_in,value_in){
+        let line_model={
+            name:name_in,
+            type:type_in,
+            line:line_in,
+            value:value_in
+        }
+        code_error_lines_list[line_index]=line_model;
+        line_index++;
+        return 0;
+    }
+    function error_line_end(name,array_in,text_array_in){
+        let number_0=number0-1;
+        let end=text_array_in.length;
+        number_0=array_in[number_0]+1;
+        if(isNaN(number_0))return 0;
+        if(array_in[number_0]>=end)return 0;
+        pull_model(name,0,number_0+1,text_array_in[number_0]);
+        return 0;
+    }
+    function error_line_mix(name,array_in,text_array_in){
+        if(array_in[number0]==0){
+            pull_model(name,1,1,text_array_in[0]);
+            return 0;
+        }
+        let number_start=0;
+        if(number0==0){
+            number_start=array_in[number0];
+        }
+        else{
+            number_start=array_in[number0-1];
+        }
+        let number_now=array_in[number0];
+        if(number_now-number_start>=5){
+            pull_model(name,0,number_start+2,text_array_in[number_start+1]);
+            pull_model(name,2,'...','');
+            pull_model(name,0,number_now,text_array_in[number_now-1]);
+            pull_model(name,1,number_now+1,text_array_in[number_now]);
+            return 0;
+        }
+        else{
+            if(number0==0){
+                pull_model(name,0,number_start,text_array_in[number_start-1]);
+                pull_model(name,1,number_start+1,text_array_in[number_start]);
+                return 0;
+            }
+            for(;;){
+                number_start++;
+                if(number_start>=number_now){
+                    pull_model(name,1,number_start+1,text_array_in[number_start]);
+                    break;
+                }
+                pull_model(name,0,number_start+1,text_array_in[number_start]);
+            }
+            return 0;
+        }
+    }
+    name_list_maker();
+    //HTML main file
+    text_array=text_files[0];
+    text_array=text_array.split(/\r\n/);
+    long=HTML_main_file_error_lines_script.length;
+    number0=0;
+    for(;;){
+        if(number0>=long){
+            error_line_end(0,HTML_main_file_error_lines_script,text_array);
+            break;
+        }
+        error_line_mix(0,HTML_main_file_error_lines_script,text_array);
+        number0++;
+    }
+    long=HTML_main_file_error_lines_style.length;
+    number0=0;
+    for(;;){
+        if(number0>=long){
+            error_line_end(1,HTML_main_file_error_lines_style,text_array);
+            break;
+        }
+        error_line_mix(1,HTML_main_file_error_lines_style,text_array);
+        number0++;
+    }
+    //css files
+    long=link_list.length;
+    number0=0,number1=1,number2=0;
+    for(;;){
+        if(number2>=long)break;
+        text_array=text_files[number1];
+        text_array=text_array.split(/\r\n/);
+        long1=link_list[number2].error_line.length;
+        for(;;){
+            if(number0>=long1){
+                error_line_end(number_f,link_list[number2].error_line,text_array);
+                break;
+            }
+            error_line_mix(number_f,link_list[number2].error_line,text_array);
+            number0++;
+        }
+        number1++,number2++,number_f++;
+    }
+    //js files
+    long=script_list.length;
+    number0=0,number2=0
+    for(;;){
+        if(number2>=long)break;
+        text_array=text_files[number1];
+        text_array=text_array.split(/\r\n/);
+        long1=script_list[number2].error_line.length;
+        for(;;){
+            if(number0>=long1){
+                error_line_end(number_f,script_list[number2].error_line,text_array);
+                break;
+            }
+            error_line_mix(number_f,script_list[number2].error_line,text_array);
+            number0++;
+        }
+        number1++,number2++,number_f++;
+    }
+    console.log('error list is:\n',code_error_lines_list);
+    return 0;
 }
 
 
