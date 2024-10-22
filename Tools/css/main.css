@@ -170,6 +170,9 @@ body {
 .list_error{
     background: #ff1b1b;
 }
+.list_skip{
+    background: #adb5bd;
+}
 .files_list_chack{
     display: inline-block;
     width: 50%;
@@ -190,4 +193,63 @@ body {
     font-style: normal;
     color: #a41bff;
     background: #defdb49d;
+}
+.error_lines_home_box_door{
+    display: grid;
+    grid-template-rows: 0fr;
+    width: 90%;
+    margin: 6px 0 6px 5%;
+    background: #98e1fd;
+    color: #ffffff;
+    padding: 3px;
+    overflow: hidden;
+    transition: grid-template-rows 0.8s;
+    -webkit-transition: grid-template-rows 0.8s;
+    -moz-transition: grid-template-rows 0.8s;
+    -ms-transition: grid-template-rows 0.8s;
+    -o-transition: grid-template-rows 0.8s;
+}
+.error_lines_home_box{
+    width: 100%;
+    min-height: 0px;
+}
+.error_line{
+    margin: 3px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.error_line_title{
+    background: #1404f5;
+    text-align: center;
+}
+.width_40{
+    width: 40px;
+    align-self: center;
+}
+.width_160{
+    width: 160px;
+    align-self: center;
+}
+.width_to_right{
+    flex: 1;
+    width: 0;
+}
+.file_0{
+    background: #f5e504;
+}
+.file_1{
+    background: #f58504;
+}
+.file_2{
+    background: #6004f5;
+}
+.file_3{
+    background: #ed04f5;
+}
+.line{
+    background: #868b83;
+}
+.error_type{
+    background: linear-gradient(90deg,#00000000 0%,#0480f5 90%);
 }

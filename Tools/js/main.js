@@ -616,6 +616,7 @@ function chack_files_loaded(){
     if(if_error){
         console.log('loaded show error');
         mix_code_error_line();
+        show_code_error_lines();
     }
     else{
         console.log('loaded show download');
@@ -832,14 +833,14 @@ function chack_js_css_line_break_error(text_in,type_css=false){
     return error_array;
 }
 /**
- * file
+ * name
  * type 0 right
  *      1 error
  *      2 null or ...
  * line 
  * value tests
  */
-let files_name_list=["HTML [css]","HTML [JavaScript]"];
+let files_name_list=["HTML [JavaScript]","HTML [css]"];
 let code_error_lines_list=[];
 function mix_code_error_line(){
     let line_index=0;
@@ -982,6 +983,39 @@ function mix_code_error_line(){
         number1++,number2++,number_f++;
     }
     console.log('error list is:\n',code_error_lines_list);
+    return 0;
+}
+function show_code_error_lines(){
+    let divs_T=['<div class="error_line list_','"><div class="width_160 file_','">','</div><div class="width_40 line">','</div><div class="width_40 error_type">','</div><div class="width_to_right">','</div></div>'];
+    let use_type=['pass','error','skip'];
+    let list=code_error_lines_list;
+    let file_name=files_name_list;
+    let file_color=[0,1,2,3];
+    let home_E=document.getElementById('error_lines_home_box');
+    let home_D=document.getElementById('error_lines_home_box_door');
+    let text_input='<div class="error_line error_line_title"><div class="width_160">file name</div><div class="width_40">line</div><div class="width_40">type</div><div class="width_to_right">code</div></div>';
+    let long=list.length;
+    let number0=0;
+    function load_file_color(){
+        let long_0=2+link_list.length+script_list.length;
+        let number_0=4,number_1=0;
+        let file_color_temp=[0,1,2,3];
+        for(;;){
+            if(number_0>=long_0)break;
+            file_color[number_0]=file_color_temp[number_1];
+            number_0++;
+            number_1=number_0%4;
+        }
+        return 0;
+    }
+    load_file_color();
+    for(;;){
+        if(number0>=long)break;
+        text_input=text_input+divs_T[0]+use_type[list[number0].type]+divs_T[1]+file_color[list[number0].name]+divs_T[2]+file_name[list[number0].name]+divs_T[3]+list[number0].line+divs_T[4]+use_type[list[number0].type]+divs_T[5]+list[number0].value+divs_T[6];
+        number0++;
+    }
+    home_E.innerHTML=text_input;
+    home_D.style['grid-template-rows']='1fr';
     return 0;
 }
 
