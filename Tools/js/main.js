@@ -159,7 +159,7 @@ function chack_in_data_or_exegesis(text_in) {
     let remove_A_R=[
         function(){
             text_T = text_T.slice(V_T[0]);
-            text_T = text_T.replace(RE_0, '');
+            text_T = text_T.replace(RE_0, 'data');
         },
         function(){
             text_T = text_T.slice(V_T[1]);
@@ -240,7 +240,7 @@ function remove_data_or_exegesis_keep_line(text_in) {
     ];
     let remove_A_R=[
         function(){
-            text_T = text_T.replace(RE_0, '');
+            text_T = text_T.replace(RE_0, 'data');
         },
         function(){
             line_temp=RE_1.exec(text_T)[0];
