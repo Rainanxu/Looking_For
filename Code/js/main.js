@@ -1597,7 +1597,7 @@ function Looking_For_Text_Witer() {
     if (Looking_For_Model != -1) return 0;
     document.getElementById('S_Title_S').innerHTML = Looking_For_Language.T_sitting;
     document.getElementById('S_Theme').innerHTML = Looking_For_Language.T_theme;
-    document.getElementById('S_Theme_S').innerHTML = Looking_For_Language.T_theme_language;
+    document.getElementById('S_Theme_S').innerHTML = Looking_For_Language.T_theme;
     document.getElementById('S_Language').innerHTML = Looking_For_Language.T_theme_language;
     document.getElementById('S_Color').innerHTML = Looking_For_Language.T_theme_color;
     document.getElementById('S_Color_D_L_A_C_T').innerHTML = Looking_For_Language.C_theme_color_mode_auto_change;
