@@ -6,17 +6,11 @@ function start_file_load() {
     get_files(file_E, 0,true);
 }
 function start_file_loaded() {
-    console.log('main HTML file loaded.')
-    /*
-    console.log(text_files[0]);
-    let text_t=remove_data_or_exegesis_keep_line(text_files[0]);
-    console.log(text_t);
-    */
+    console.log('main HTML file loaded.');
     console.log('main HTML file chacking...');
     chack_HTML_line_break_error();
     console.log('main HTML file chacking links...');
     get_link_list(text_files[0]);
-    //console.log(HTML_main_file, link_list, script_list);
     files_list_step_style_load();
     console.log('main HTML file show links.');
     show_files_list();
@@ -48,27 +42,11 @@ function link_file_loaded(file_index_in,type_css){
         console.log('error line index',error_list);
     }
     files_list_step_style_load();
-    //console.log(text_files[file_index_in],file_index_in,type_css);
     return 0;
 };
 let code_url = "";
 let chack_line = 0;
 let chack_index = 0;
-/*
-function get_url() {
-    let url = window.location.href;
-    let url_part = url.split('/');
-    let url_end = "";
-    let number0 = 0;
-    let Long = url_part.length - 2;
-    for (; ;) {
-        if (Long <= number0) break;
-        url_end = url_end + url_part[number0] + '/';
-    }
-    url_end = url_end + 'Code';
-    code_url = url_end;
-    return 0;
-}*/
 let files_index = 0;
 let files_type_in=0;
 let text_files = [];
@@ -112,28 +90,6 @@ function be_line(text_in) {
     return_T = text_in.split('/\r\n/');
     return return_T;
 }
-/*
-function chack_data(text_in){
-    let text_T=text_in;
-    let RE_0=/['"]/;
-    let RE_1=/[^'"]/g;
-    let RE_2=/'["]{0,}'/;
-    let RE_3=/"[']{0,}"/;
-    let number0=0,number1=-1;
-    if(RE_0.test(text_T)){
-        text_T=text_T.replace(RE_1,'');
-        for(;;){
-            number0=text_T.length;
-            if(number0==0)return false;
-            if(number0==number1)return true;
-            number1=number0;
-            text_T=text_T.replace(RE_2,'');
-            text_T=text_T.replace(RE_3,'');
-        }
-    }
-    return false;
-}
-    */
 function chack_in_data_or_exegesis(text_in) {
     let text_T = text_in;
     let RE_0 = /("([^"\r\n]){0,}")|('([^'\r\n]){0,}')/;
@@ -448,6 +404,7 @@ function get_link_list(text_in) {
     return 0;
 }
 function show_files_list() {
+    let home_D = document.getElementById('files_list_box_home');
     let home_E = document.getElementById('files_list_box');
     let box_T = [
         '<div id="files_box_list_',
@@ -487,6 +444,7 @@ function show_files_list() {
         number0++;
     }
     home_E.innerHTML = text_input;
+    home_D.style['grid-template-rows']='1fr';
     return 0;
 }
 function files_list_upload_lable(index_in = 0, type = 0){
@@ -620,7 +578,9 @@ function chack_files_loaded(){
     }
     else{
         console.log('loaded show download');
-        show_download();
+        mix_all_files();
+        make_down_load();
+        //show_download();
     }
     return 0;
 }
@@ -1018,395 +978,47 @@ function show_code_error_lines(){
     home_D.style['grid-template-rows']='1fr';
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-0 nomol
-1 <any>
-2 ""
-3 ''
-4 //
-5 /*...
-6 <!-- -->
-7 /export/
- */
-let type_chacking = 0;
-let type_code = [
-
-];
-let type_chack_funcation = [
-    function (text_in) {
-        let text_T = text_in;
-        let code_T = text_T[chack_index];
-        let number0 = chack_index + 1;
-        let temp0 = 0;
-        let chack_lable = [
-            function (code_in) {
-                if (code_in == '(') return 3;
-                else if (code_in == '"') return 1;
-                else if (code_in == "'") return 2;
-                else return 0;
-            },
-            function (code_in) {
-                if (code_in == '"') return 0;
-            },
-            function (code_in) {
-                if (code_in == "'") return 0;
-            },
-        ]
-        if (code_T == '<') {
-            if (text_T[number0] == '!') {
-                if (text_T[number0 + 1] != '-') return 0
-                else if (text_T[number0 + 2] != '-') return 0;
-                else return 6;
-            }
-            else {
-                number0 = chack_index - 1;
-                for (; ;) {
-                    if (number0 < 0) return 0;
-                    temp0 = chack_lable[temp0](text_T[number0]);
-                    if (temp0 == 3) return 1;
-                    else {
-                        number0--;
-                    }
-                }
-            }
+let HTML_text_all="";
+function mix_all_files(){
+    let text_T=HTML_main_file;
+    let M_E=document.getElementById('output_i');
+    let RE_St=/\|\|--\|Looking_For_LInK_cUt_In_\|\|--\|/;
+    let RE_Sc=/\|\|--\|Looking_For_SCRIpT_cUt_In_\|\|--\|/;
+    let list=link_list;
+    let file_index=1;
+    let number0=0,long=list.length;
+    console.log('mix files...');
+    M_E.innerHTML='mixing fies...';
+    for(;;){
+        if(number0>=long)break;
+        if(list[number0].use==2){
+            text_T=text_T.replace(RE_St,'<link rel="stylesheet" type="text/css" href="'+list[number0].url+'">');
         }
-        else if (code_T == '"') return 2;
-        else if (code_T == "'") return 3;
-        else if (code_T == '/') {
-            if (text_T[number0] == '/') return 4;
-            else if (text_T[number0] == '*') return 5;
-            else return 7;
+        else{
+            text_T=text_T.replace(RE_St,'<style>'+text_files[file_index]+'</style>');
+            file_index++;
         }
-        else return 0;
-    },
-    function (text_in) {
-        let code_T = text_in[chack_index];
-        if (code_T == '>') return 0;
-        else return 1;
-    },
-    function (text_in) {
-        let code_T = text_in[chack_index];
-        if (code_T == '"') return 0;
-        else return 2;
-    },
-    function (text_in) {
-        let code_T = text_in[chack_index];
-        if (code_T == "'") return 0;
-        else return 3;
-    },
-    function (text_in) {
-        let code_T = text_in[chack_index];
-        if (code_T == '/n') return 0;
-        else return 4;
-    },
-    function (text_in) {
-        let text_T = text_in;
-        let code_T = text_T[chack_index];
-        let number0 = chack_index - 1;
-        if (code_T == '/') {
-            if (text_T[number0] == '*') return 0;
-            else return 5;
-        }
-        else return 5;
-    },
-    function (text_in) {
-        let text_T = text_in;
-        let code_T = text_T[chack_index];
-        let number0 = chack_index - 1;
-        if (code_T == '>') {
-            if (text_T[number0] == '-') {
-                if (text_T[number0 - 1] == '-') return 0;
-                else return 6;
-            }
-            else return 6;
-        }
-        else return 6;
-    },
-    function (text_in) {
-        let code_T = text_in[chack_index];
-        if (code_T == '/') return 0;
-        else return 7;
-    }
-];
-function text_maker(text_in) {
-    let text_T = "";
-}
-function text_copy(text_in) {
-    let text_T = "";
-}
-function text_chack_log(text_in) {
-    let text_T = "";
-}
-function text_chack(text_in) {
-    let text_T;
-    let Long = text_in.length;
-    let type_chacking_old = 0;
-    let type_chack_value_0 = [true, true, true, true, true, true, true, true];
-    for (; ;) {
-        if (line >= Long) {
-            return 0;
-        }
-        type_chacking = type_chack_funcation[type_chacking](text_in[chack_line]);
-        if (type_chack_value_0[type_chacking_old]) {
-            if (type_chack_value_0[type_chacking]) { }
-        }
-        line++;
-    }
-}
-
-
-
-let if_error = false;
-/*
-line end or next line head
- */
-let line_break_legal_0 = [';', ',', '{', '}', '(', ')'];
-/*
-line end and next line head
- */
-let line_break_legal_1 = [
-    {
-        end: '\[',
-        next: ['\[', '\]']
-    },
-    {
-        end: '\]',
-        next: ['\[', '\]']
-    }
-];
-let line_break_mix_error = [];
-function chack_scritp(text_in, file_in_name, start_line = 0, end_line = text_in.length) {
-    function be_RE_0() {
-        let index = 0;
-        let text_temp = "";
-        for (; ;) {
-            if (line_break_legal_0[index] === undefined) break;
-            text_temp = text_temp + line_break_legal_0[index];
-            index++;
-        }
-        text_temp = new RegExp('[' + text_temp + ']');
-        return text_temp;
-    }
-    function be_RE_1() {
-        let index = 0;
-        let index_n = 0;
-        let text_temp = "";
-        let RE_return = [];
-        for (; ;) {
-            if (line_break_legal_1[index_n] === undefined) break;
-            index = 0;
-            for (; ;) {
-                if (line_break_legal_1[index_n][index] === undefined) break;
-                text_temp = text_temp + line_break_legal_1[index_n][index];
-                index++;
-            }
-            RE_return[index_n] = { end: new RegExp('[' + line_break_legal_1[index_n].end + ']'), next: new RegExp('[' + text_temp + ']') }
-            index_n++;
-        }
-        return RE_return;
-    }
-    let RE_legal_0 = be_RE_0();
-    let RE_legal_1 = be_RE_1();
-    function error_load(line_in) {
-        let error_model = {
-            file_name: file_in_name,
-            before_line: {
-                index: 0,
-                value: ""
-            },
-            error_line: {
-                index: 0,
-                value: ""
-            },
-            after_line: {
-                index: 0,
-                value: ""
-            }
-        };
-        let line_set = line_in - 1;
-        if_error = true;
-        error_model.before_line.index = line_set;
-        error_model.before_line.value = text_in[line_set];
-        line_set++;
-        error_model.error_line.index = line_set;
-        error_model.error_line.value = text_in[line_set];
-        line_set++;
-        if (text_in[line_set] === undefined) {
-            error_model.after_line.index = 'end';
-            error_model.after_line.value = undefined;
-        }
-        else {
-            error_model.after_line.index = line_set;
-            error_model.after_line.value = text_in[line_set];
-        }
-        line_set = line_break_mix_error.length;
-        line_break_mix_error[line_set] = error_model;
-    }
-    function line_chack() {
-        let line_n = 0;
-        let line_l = text_in[number0].length - 1;
-        let text_temp = text_in[number0][line_l];
-        let ruler_index = 0;
-        for (; ;) {
-            if (text_temp === undefined) {
-                return 0;
-            }
-            else if (text_temp == ' ') {
-                line_l--;
-                text_temp = text_in[line_n][line_l];
-            }
-            else break;
-        }
-        if (RE_legal_0.test(text_temp)) return 0;
-        else {
-            for (; ;) {
-                if (RE_legal_1[ruler_index] === undefined) break;
-                if (RE_legal_1[ruler_index].end.test(text_temp)) {
-                    line_n = number0 + 1;
-                    line_l = 0;
-                    text_temp = text_in[line_n][0];
-                    for (; ;) {
-                        if (text_temp === undefined) {
-                            line_n++;
-                            line_l = 0;
-                            text_temp = text_in[line_n][line_l];
-                        }
-                        else if (text_temp == ' ') {
-                            line_l++;
-                            text_temp = text_in[line_n][line_l];
-                        }
-                        else break;
-                    }
-                }
-                if (RE_legal_1[ruler_index].next.test(text_temp)) {
-                    return 0;
-                }
-                else break;
-            }
-            error_load(number0);
-        }
-        return 1;
-    }
-    let number0 = start_line;
-    for (; ;) {
-        if (number0 > end_line) break;
-        line_chack();
         number0++;
     }
-}
-function line_break_mix_error_chack(text_in, file_in_name) {
-    let Long = text_in.length;
-    let number0 = 0, number1 = 0;
-    let scritp_start = [];
-    let scritp_end = [];
-    function find_scritp() {
-        let RE_start = /<script /i;
-        let RE_end = /<\/script /i;
-        let RE_data = /['"]/;
-        let text_temp = "";
-        chack_line = 0;
-        for (; ;) {
-            if (chack_line >= Long) break;
-            if (RE_start.test(text_in[chack_line])) {
-                text_temp = text_in[chack_line].split(/<script /i);
-                text_temp = text_temp[0].replace(/"[^"]"/g, '');
-                text_temp = text_temp.replace(/'[^']'/g, '');
-                if (!RE_data.test(text_temp)) scritp_start[number0] = chack_line;
-            }
-            if (RE_end.test(text_in[chack_line])) {
-                text_temp = text_in[chack_line].split(/<script /i);
-                text_temp = text_temp[0].replace(/"[^"]"/g, '');
-                text_temp = text_temp.replace(/'[^']'/g, '');
-                if (!RE_data.test(text_temp))
-                    scritp_end[number0] = chack_line;
-            }
-            chack_line++, number0++;
+    list=script_list;
+    number0=0,long=list.length;
+    for(;;){
+        if(number0>=long)break;
+        if(list[number0].use==2){
+            text_T=text_T.replace(RE_Sc,'<script type="text/JavaScript" src="'+list[number0].url+'"></script>');
         }
-    }
-    find_scritp();
-    number0 = 0;
-    number1 = scritp_start.length;
-    for (; ;) {
-        if (number0 >= number1) break;
-        chack_scritp(text_in, file_in_name, scritp_start[number0], scritp_end[number0]);
+        else{
+            text_T=text_T.replace(RE_Sc,'<script>'+text_files[file_index]+'</script>');
+            file_index++;
+        }
         number0++;
     }
+    text_T=reset_default_configuration(text_T);
+    text_T=put_ex_code_in_input(text_T);
+    HTML_text_all=text_T;
+    console.log('file mixed.');
+    M_E.innerHTML='file mixed.';
     return 0;
-}
-
-function get_link_file() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://homeself.buesand.com/js/version.js");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
-        }
-    }
-    xhr.send();
-}
-
-function get_link_text() {
-    fetch("file.txt")
-        .then(response => response.text())
-        .then(content => {
-            console.log(content);
-        });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let show_code_value = false;
-function get_file() {
-    let F_E = document.getElementById('file_in');
-    let F_I_E = document.getElementById('output_i');
-    F_I_E.innerHTML = 'Loading';
-    let F_T;
-    let F_R;
-    if (F_E.files[0]) {
-        F_R = new FileReader();
-        F_R.readAsText(F_E.files[0], 'utf-8');
-        F_R.onload = function () {
-            F_I_E.className = 'output_i output_i_s';
-            F_I_E.innerHTML = 'Loaded';
-            F_T = this.result;
-            chack_text(F_T);
-        }
-    }
-    else {
-        F_I_E.className = 'output_i output_i_f';
-        F_I_E.innerHTML = 'Load fall';
-    }
 }
 function remove_ex_spase(text) {
     let T_T = text;
@@ -1418,168 +1030,12 @@ function remove_ex_enter(text) {
     T_T = T_T.replace(/[\r\n]/g, '');
     return T_T;
 }
-function remove_annotation(file) {
-    const code_s = [
-        ['"', "'", '/' + '/', '/*', '<!--'],
-        ['"', "'", '\n', '*/', '-->']
-    ];
-    let F_T = file;
-    let number0 = 0;
-    let F_R = '';
-    let R_T = [F_R, true];
-    let aero_in = false;
-    let aero_temp = [false, ''];
-    let line_n = 1;
-    let R_E = [/[;{}\n\r> \/,\[]/, /\][ \r\n\]]{0,}[;,]/, /[ \r\n\];,]/, /[ \r\n]/];
-    let number1 = 0, number2 = 0;
-    let error_where = [undefined];
-    let T_T = '\n&ensp;&ensp;&ensp;&ensp;Enter error !\n\n';
-    let temp_chack = '', temp_chack1 = false;
-    let number3 = 0, number4 = 0;
-    let temp_line_v = '';
-    //F_T=remove_ex_spase(F_T);
-    for (; ;) {
-        /*if(F_T[3+number0]==undefined){
-            if(F_T[2+number0]==undefined){
-                if(F_T[1+number0]==undefined){
-                    if(F_T[number0]==undefined){
-                        break;
-                    }
-                }
-            }
-        }*/
-        if (F_T[number0] == undefined) {
-            if (aero_temp[0] === false || aero_temp[0] == 0 || aero_temp[0] == 1) {
-                F_R = F_R + aero_temp[1];
-            }
-            break;
-        }
-        if (aero_in !== false) {
-            aero_temp[1] = aero_temp[1] + F_T[number0];
-            if (aero_in == 0) {
-                if (F_T[number0] == code_s[1][0]) {
-                    aero_in = false;
-                }
-            }
-            else if (aero_in == 1) {
-                if (F_T[number0] == code_s[1][1]) {
-                    aero_in = false;
-                }
-            }
-            else if (aero_in == 2) {
-                if (F_T[number0] == code_s[1][2]) {
-                    aero_in = false;
-                }
-            }
-            else if (aero_in == 3) {
-                if (F_T[number0] + F_T[1 + number0] == code_s[1][3]) {
-                    aero_in = false;
-                    number0++;
-                    aero_temp[1] = aero_temp[1] + F_T[number0];
-                }
-            }
-            else if (aero_in == 4) {
-                if (F_T[number0] + F_T[1 + number0] + F_T[2 + number0] == code_s[1][4]) {
-                    aero_in = false;
-                    number0++;
-                    aero_temp[1] = aero_temp[1] + F_T[number0];
-                    number0++;
-                    aero_temp[1] = aero_temp[1] + F_T[number0];
-                }
-            }
-        }
-        else {
-            if (F_T[number0] == code_s[0][0]) {
-                aero_in = 0;
-            }
-            else if (F_T[number0] == code_s[0][1]) {
-                aero_in = 1;
-            }
-            else if (F_T[number0] == '/') {
-                if (F_T[number0] + F_T[1 + number0] == code_s[0][2]) {
-                    aero_in = 2;
-                }
-                else if (F_T[number0] + F_T[1 + number0] == code_s[0][3]) {
-                    aero_in = 3;
-                }
-            }
-            else if (F_T[number0] == '<') {
-                if (F_T[number0] + F_T[1 + number0] + F_T[2 + number0] + F_T[3 + number0] === code_s[0][4]) {
-                    aero_in = 4;
-                }
-            }
-            if (aero_in === false) {
-                aero_temp[1] = aero_temp[1] + F_T[number0];
-            }
-        }
-        if (aero_temp[0] !== aero_in) {
-            if (aero_temp[0] === false || aero_temp[0] == 0 || aero_temp[0] == 1) {
-                F_R = F_R + aero_temp[1];
-            }
-            if (aero_in === false) {
-                aero_temp[1] = '';
-            }
-            else {
-                aero_temp[1] = '' + F_T[number0];
-            }
-            aero_temp[0] = aero_in;
-        }
-        temp_line_v = temp_line_v + F_T[number0];
-        if (F_T[number0] == '\r') {
-            line_n++;
-            temp_line_v = temp_line_v.replace(/[\r\n]/g, '');
-            if (aero_temp[0] === false || aero_temp[0] == 0 || aero_temp[0] == 1) {
-                number4 = number0 + 1;
-                temp_chack1 = false;
-                for (; ;) {
-                    if (R_E[3].test(F_T[number4])) { }
-                    else {
-                        if (F_T[number4] == '}') temp_chack1 = true;
-                        break;
-                    }
-                    number4++;
-                }
-                if (temp_chack1) { }
-                else if (F_T[number0 - 1] === ']') {
-                    temp_chack = F_T[number0 - 1];
-                    number3 = number0;
-                    for (; ;) {
-                        if (R_E[2].test(F_T[number3])) temp_chack = temp_chack + F_T[number3];
-                        else break;
-                        number3++;
-                    }
-                    number3 = 1;
-                }
-                else {
-                    temp_chack = F_T[number0 - 1];
-                    number3 = 0;
-                }
-                if (temp_chack1 || R_E[number3].test(temp_chack) || temp_chack === undefined) { }
-                else {
-                    error_where[number2] = line_n;
-                    number2++;
-                    error_where[number2] = temp_line_v + '\r\n';
-                    number2++;
-                }
-            }
-            temp_line_v = '&ensp;&ensp;&ensp;&ensp;';
-        }
-        number0++;
-    }
-    if (error_where[0] === undefined) {
-        R_T[0] = F_R;
-    }
-    else {
-        number0 = 0;
-        for (; ;) {
-            if (error_where[number0] === undefined) break;
-            T_T = T_T + 'Enter error at line ' + error_where[number0] + ':\n' + error_where[number0 + 1] + '\n';
-            number0++;
-            number0++;
-        }
-        R_T[0] = T_T, R_T[1] = false;
-    }
-    return R_T;
+function change_LF_code(text) {
+    let temp_T = text;
+    temp_T = temp_T.replace(/</g, 'LF60b;');
+    temp_T = temp_T.replace(/>/g, 'LF62b;');
+    temp_T = temp_T.replace(/"/g, 'LF34b;');
+    return temp_T;
 }
 function change_60(text) {
     let temp_T = text;
@@ -1588,99 +1044,135 @@ function change_60(text) {
     temp_T = temp_T.replace(/\n/g, '<br>');
     return temp_T;
 }
-function chang_dev_def_language_of_save_file(text) {
-    let temp_T = text;
-    temp_T = temp_T.replace(/Looking_For_S_Save_File[(][)]/, 'Looking_For_S_Save_File(true)');
-    return temp_T;
+function remove_exegesis(text_in) {
+    let text_T = text_in;
+    let RE_0 = /("([^"\r\n]){0,}")|('([^'\r\n]){0,}')/;
+    let RE_1 = /(\/\/([^\r\n]){0,})|(\/\*([\s\S]){0,}?\*\/)/;
+    let RE_2 = /<!--([\s\S]){0,}?-->/;
+    let text_temp="";
+    let data_list=[];
+    let long=0;
+    let number0=0;
+    let V_T=[0,0,0];
+    let R0=0,R1=1,R2=2,RT=0;
+    let chack_A_R=[
+        function(){
+            V_T[0] = text_T.search(RE_0);
+        },
+        function(){
+            V_T[1] = text_T.search(RE_1);
+        },
+        function(){
+            V_T[2] = text_T.search(RE_2);
+        }
+    ];
+    let remove_A_R=[
+        function(){
+            text_temp=text_T.slice(0,V_T[0]);
+            text_T = text_T.slice(V_T[0]);
+            data_list[number0]=RE_0.exec(text_T)[0];
+            number0++;
+            text_T = text_temp + text_T.replace(RE_0, 'LF01dAtAb;');
+        },
+        function(){
+            text_temp=text_T.slice(0,V_T[1]);
+            text_T = text_T.slice(V_T[1]);
+            text_T = text_temp + text_T.replace(RE_1, '');
+        },
+        function(){
+            text_temp=text_T.slice(0,V_T[2]);
+            text_T = text_T.slice(V_T[2]);
+            text_T = text_temp + text_T.replace(RE_2, '');
+        }
+    ];
+    function chack_A(index_in){
+        remove_A_R[index_in]();
+        chack_A_R[index_in]();
+    }
+    V_T[R0] = text_T.search(RE_0);
+    V_T[R1] = text_T.search(RE_1);
+    V_T[R2] = text_T.search(RE_2);
+    for(;;){
+        if(V_T[R1]<=V_T[R2]){
+            RT=R2;
+            R2=R1;
+            R1=RT;
+        }
+        if(V_T[R0]<=V_T[R2]){
+            RT=R2;
+            R2=R0;
+            R0=RT;
+        }
+        if(V_T[R2]==-1){
+            for(;;){
+                if(V_T[R0]<=V_T[R1]){
+                    RT=R1;
+                    R1=R0;
+                    R0=RT;
+                }
+                if(V_T[R1]==-1){
+                    for(;;){
+                        if(V_T[R0]==-1)break;
+                        chack_A(R0);
+                    }
+                    break;
+                }
+                chack_A(R1);
+                chack_A_R[R0]();
+            }
+            break;
+        }
+        chack_A(R2);
+        chack_A_R[R1]();
+        chack_A_R[R0]();
+    }
+    number0=0,long=data_list.length;
+    for(;;){
+        if(number0>=long){
+            break;
+        }
+        text_T=text_T.replace('LF01dAtAb;',data_list[number0]);
+        number0++;
+    }
+    return text_T;
 }
-function change_LF_code(text) {
-    let temp_T = text;
-    temp_T = temp_T.replace(/</g, 'LF60b;');
-    temp_T = temp_T.replace(/>/g, 'LF62b;');
-    temp_T = temp_T.replace(/"/g, 'LF34b;');
-    return temp_T;
+function put_ex_code_in_input(text){
+    let T_T=text;
+    let RE_sign_in=/Looking_For_Code_SaVe_RmFilE_In_SiGn/;
+    let RE_sign_start=/\/\*Looking_For_CoNfiG_EnD_sign\*\//;
+    let RE_get_code=/\/\*Looking_For_CoNfiG_EnD_sign\*\/([\s\S]){0,}Looking_For_Code_SaVe_RmFilE_In_SiGn/;
+    T_T=RE_get_code.exec(T_T)[0];
+    T_T=T_T.slice(0,-36);
+    T_T=remove_exegesis(T_T);
+    T_T=remove_ex_enter(T_T);
+    T_T=remove_ex_spase(T_T);
+    T_T=change_LF_code(T_T);
+    T_T=text.replace(RE_sign_in,T_T);
+    return T_T;
 }
-function split_part(text) {
-    let T_T = text;
-    let T_P = ['', ''];
-    let temp0 = '';
-    const conf_temp = 'Looking_For_Background_If_Use=[\r\n[\r\n[-2, "0", 0, 0, 0, 0]\r\n],\r\n[\r\n[-2, "0", 0, 0, 0, 0]\r\n]\r\n];\r\n' + '/*links 是网页链接，可自行修改，注意保持格式\r\n类型编号从 1 开始 其为 0 时，列表结束\r\n分别是 类型编号 类型/链接名称 链接主页 链接(如为类型，则为0) 链接后部控制符(0为无控制) 链接打开方式,数值参见ctrl_go_link_as 非默认打开方式的原因(0为默认原因) 是否启用\r\n以下网页链接仅供测试使用*/\r\nvar Looking_For_Links=[\r\n[0,"",0,0,0,ctrl_go_link_as,0,1],\r\n[-1,0,0,0,0,ctrl_go_link_as,0,1],\r\n];\r\n';
-    T_T = T_T.split('/*CONFIG END*/');
-    if (T_T[1] === undefined) {
-        return undefined;
-    }
-    T_P[0] = T_T[0] + '\r\n/*CONFIG END*/\r\n';
-    T_P[1] = T_T[1];
-    T_T = T_P[0].split('Looking_For_Background_If_Use=[')[0];
-    T_P[0] = T_T + conf_temp;
-    T_T = T_P[1].split('<input placeholder="I" id="Looking_For_S_Save_Body" value="');
-    if (T_T[1] === undefined) {
-        return undefined;
-    }
-    T_P[1] = T_T[0] + '<input placeholder="I" id="Looking_For_S_Save_Body" value="';
-    T_P[2] = T_T[1];
-    T_T = T_P[0].split('Version:');
-    if (T_T[1] === undefined) {
-        return undefined;
-    }
-    T_P[3] = T_T[1].split(/['"']/)[1];
-    return T_P;
-}
-function chack_text(file) {
-    let F_E = document.getElementById('file_in');
-    let F_I_E = document.getElementById('output_i');
-    let fine = true;
-    let temp_text = file;
-    let temp_text_show = '';
-    let temp_part_e = '';
-    let V_F = '';
-    let temp_part = split_part(temp_text);
-    if (temp_part === undefined) {
-        F_I_E.className = 'output_i output_i_f';
-        F_I_E.innerHTML = 'Split error';
-        return -1;
-    }
-    V_F = temp_part[3];
-    temp_text = remove_annotation(temp_text);
-    if (temp_text[1]) {
-        temp_text = remove_annotation(temp_part[1]);
-        temp_part[1] = temp_text[0];
-        temp_part_e = remove_ex_enter(temp_part[1]);
-        temp_part_e = remove_ex_spase(temp_part_e);
-        temp_part_e = change_LF_code(temp_part_e);
-        temp_text = remove_annotation(temp_part[2]);
-        temp_part[2] = temp_text[0];
-        //save change of moll language show at first open in release
-        temp_part[1] = chang_dev_def_language_of_save_file(temp_part[1]);
-        //
-        temp_text = temp_part[0] + temp_part[1] + '/*CONFIG END*/' + temp_part_e + temp_part[2];
-    }
-    else {
-        fine = false;
-        temp_text_show = temp_text[0];
-    }
-    if (fine) {
-        temp_text_show = change_60(temp_text);
-
-        show_text(temp_text_show);
-        show_code(V_F);
-        show_download(V_F, temp_text);
-    }
-    else {
-        temp_text_show = change_60(temp_text_show);
-        show_text(temp_text_show);
-        document.getElementById('output_div').style['grid-template-rows'] = '1fr';
-        F_I_E.className = 'output_i output_i_f';
-        F_I_E.innerHTML = 'Chack not pass';
-    }
-}
-function show_text(file) {
-    let temp_F = file;
-    let P_E = document.getElementById('output_p');
-    P_E.innerHTML = temp_F;
+function make_down_load(){
+    let text_T=HTML_text_all;
+    let RE_V=/const([\s]){1,}Looking_For_DEV_Version_Message([\s]){0,}=([\s]){0,}{/;
+    let RE_V_1=/Version([\s]){0,}:([^,]){0,},/i;
+    let RE_data=/('([^']){0,}')|("([^"]){0,}")/;
+    let L_V="";
+    let number0=0;
+    number0=text_T.search(RE_V);
+    text_T=text_T.slice(number0,number0+200);
+    text_T=RE_V_1.exec(text_T)[0];
+    text_T=RE_data.exec(text_T)[0];
+    L_V=text_T.slice(1,-1);
+    console.log('chack pass: Looking_For_V_'+L_V+'_DEV.html');
+    show_version(L_V);
+    console.log('show_code');
+    text_T=HTML_text_all;
+    text_T=change_60(text_T);
+    show_text(text_T);
+    console.log('show download');
+    show_download(L_V,HTML_text_all);
     return 0;
 }
-function show_code(lv) {
+function show_version(lv) {
     let F_I_E = document.getElementById('output_i');
     let B_E = document.getElementById('show_code');
     let B_V_E = document.getElementById('show_version');
@@ -1688,16 +1180,7 @@ function show_code(lv) {
     B_V_E.innerHTML = 'Looking_For_V_' + lv + '_DEV.html';
     B_E.style.height = '40px';
     B_V_E.style.height = '40px';
-}
-function show_code_a() {
-    let B_E = document.getElementById('output_div');
-    if (show_code_value) {
-        B_E.style['grid-template-rows'] = '0fr';
-    }
-    else {
-        B_E.style['grid-template-rows'] = '1fr';
-    }
-    show_code_value = !show_code_value;
+    return 0;
 }
 function show_download(lv, file) {
     let D_E = document.getElementById('download_div');
@@ -1707,8 +1190,42 @@ function show_download(lv, file) {
     A_E.download = 'Looking_For_V_' + lv + '_DEV.html';
     A_E.href = url.createObjectURL(blob);
     D_E.style.height = '100px';
+    return 0;
 }
 function file_download() {
     let A_E = document.getElementById('download_a');
     A_E.click();
+    console.log('download file.');
+    return 0;
+}
+function show_text(file) {
+    let temp_F = file;
+    let P_E = document.getElementById('output_p');
+    P_E.innerHTML = temp_F;
+    return 0;
+}
+let show_code_value = false;
+function show_code_a() {
+    let B_E = document.getElementById('output_div');
+    if (show_code_value) {
+        B_E.style['grid-template-rows'] = '0fr';
+        console.log('hind code.');
+    }
+    else {
+        B_E.style['grid-template-rows'] = '1fr';
+        console.log('show code.');
+    }
+    show_code_value = !show_code_value;
+    return 0;
+}
+function reset_default_configuration(text_in){
+    const conf_temp_0 = 'var Looking_For_Background_If_Use=[\r\n[\r\n[-2, "0", 0, 0, 0, 0]\r\n],\r\n[\r\n[-2, "0", 0, 0, 0, 0]\r\n]\r\n];\r\n';
+    const conf_temp_1 = 'var Looking_For_Links=[\r\n[0,"",0,0,0,ctrl_go_link_as,0,1],\r\n[-1,0,0,0,0,ctrl_go_link_as,0,1],\r\n];\r\n';
+    let RE_0=/((var)|(let))([\s]){1,}Looking_For_Background_If_Use([\s]){0,}=([^;]){0,};/;
+    let RE_1=/((var)|(let))([\s]){1,}Looking_For_Links([\s]){0,}=([^;]){0,};/;
+    let text_T=text_in;
+    text_T=text_T.replace(RE_0,conf_temp_0);
+    text_T=text_T.replace(RE_1,conf_temp_1);
+    console.log('reseted configuration.');
+    return text_T;
 }

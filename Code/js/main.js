@@ -166,7 +166,7 @@ var Looking_For_Links = [
 
 
 
-/*CONFIG END*/
+/*Looking_For_CoNfiG_EnD_sign*/
 var Looking_For_Version = 2.0;
 var Looking_For_Model_Temp_To_Save = Looking_For_Model;
 var Looking_For_File_Name_Temp_To_Save = Looking_For_File_Name;
@@ -4819,9 +4819,11 @@ function Looking_For_S_Save_File(if_reset_language = 0) {
     let Text_F = '"></div></body></html>';
 
     //let Code_Temp=['"', 'LF34b;', '<', 'LF60b;', '>', 'LF62b;'];
+    // this variable is a tag don`t edit.
     let Looking_For_Code_Change_Where_Code_Identifier_Start;
     let Code_Temp = ['"', 'LF34b;', '<', 'LF60b;', '>', 'LF62b;'];
     let Looking_For_Code_Change_Where_Code_Identifier_End;
+    // this variable is a tag don`t edit.
 
     let Text_S = Text_B.replaceAll(Code_Temp[1], Code_Temp[0]);
     Text_S = Text_S.replaceAll(Code_Temp[3], Code_Temp[2]);

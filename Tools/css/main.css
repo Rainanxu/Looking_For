@@ -10,6 +10,7 @@ body {
 .home {
     display: grid;
     margin-left: 10%;
+    margin-bottom: 200px;
     width: 80%;
     background: #0480f5;
 }
@@ -147,8 +148,20 @@ body {
     width: 80%;
     margin: 6px 0 6px 10%;
 }
+.files_list_box_home{
+    width: 100%;
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 1s;
+    -webkit-transition: grid-template-rows 1s;
+    -moz-transition: grid-template-rows 1s;
+    -ms-transition: grid-template-rows 1s;
+    -o-transition: grid-template-rows 1s;
+}
 .files_box_list{
     width: 90%;
+    min-height: 0;
     margin: 6px 0 6px 5%;
     text-align: left;
 }
