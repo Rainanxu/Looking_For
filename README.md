@@ -46,6 +46,7 @@ Mode|Explain
 Configurations can be migrated using a variety of saving methods using federation.
 * Migrate the configuration to a new file by saving it to a local cache and then deploying the new file to the target location.
 * Save the configuration to a file and migrate the file to the new device to migrate the configuration to the new device.
+* If you need to rename images in bulk, you can use the My Rename tool[Rename_tool](https://github.com/Rainanxu/Rename_tool/).
 
 The aspect ratio of the background image can be inconsistent with the target screen, and additional dynamic effects will appear when switching.
 
