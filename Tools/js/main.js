@@ -704,7 +704,7 @@ function chack_HTML_line_break_error(){
         number1=0;number2=cut_get_lines_temp.length;
         for(;;){
             if(number1>=number2)break;
-            script_error_lines[script_error_line_index]=cut_get_lines[cut_get_index]+cut_get_lines_temp[number1];
+            script_error_lines[script_error_line_index]=cut_get_lines[cut_get_index]+cut_get_lines_temp[number1]-1;
             number1++,script_error_line_index++;
         }
         cut_get_index++;
@@ -747,7 +747,7 @@ function chack_HTML_line_break_error(){
         number1=0;number2=cut_get_lines_temp.length;
         for(;;){
             if(number1>=number2)break;
-            style_error_lines[style_error_line_index]=cut_get_lines_style[cut_get_index]+cut_get_lines_temp[number1];
+            style_error_lines[style_error_line_index]=cut_get_lines_style[cut_get_index]+cut_get_lines_temp[number1]-1;
             number1++,style_error_line_index++;
         }
         cut_get_index++;
@@ -755,7 +755,7 @@ function chack_HTML_line_break_error(){
     HTML_main_file_error_lines_script=script_error_lines;
     console.log("error line index type:[JavaScript]",HTML_main_file_error_lines_script);
     HTML_main_file_error_lines_style=style_error_lines;
-    console.log("error line index type:[css]",HTML_main_file_error_lines_script);
+    console.log("error line index type:[css]",HTML_main_file_error_lines_style);
     if(script_error_lines.length>=1){
         if(style_error_lines.length>=1)HTML_main_file_use=4;
         console.log("main HTML file chack error!s");
