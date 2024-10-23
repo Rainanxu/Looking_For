@@ -5102,6 +5102,7 @@ function Looking_For_Get_Url_Messages() {
             if (url_id_key[0] == 'keyword') {
                 document.getElementById('putin_value').value = url_id_key[1];
                 document.getElementById('wellcome_chars_input').value = url_id_key[1];
+                link_go_way = 1;
                 ctrl_lode_in_ids_open_twices = 1;
             }
         }
@@ -5542,6 +5543,10 @@ function link_go() {
     if (link_go_way == 2) {
         /*go no any with*/
         model_clr = 2;
+    }
+    if (link_go_way == 1) {
+        /*add no any with*/
+        model_clr = 0;
     }
     else if (value_welcome_page == 1) {
         if (Looking_For_Model == 0) {
