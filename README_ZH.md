@@ -62,9 +62,10 @@ urllink|要访问的链接。
 本程序代码存在特殊性，保存时会将所有代码合并为单行，并将部分代码保留在标签属性中，故需要对部分特殊字符进行修改。
 
 修改代码遵循以下原则：
-* 1、在删除所有换行符后程序依然能正常运行。
+* 1、将所有链接代码替换到链接位置。
+* 2、在删除所有换行符后程序依然能正常运行。
 * * 尽量保留可以省略的`;`。
-* 2、将前部`/*CONFIG END*/`和末尾`<input placeholder="I" id="Looking_For_S_Save_Body" value="`及二者之间的代码复制，修改后粘贴在`<input placeholder="I" id="Looking_For_S_Save_Body" value="">`的`value`值中。
+* 3、将前部`/*Looking_For_CoNfiG_EnD_sign*/`和末尾`Looking_For_Code_SaVe_RmFilE_In_SiGn`及二者之间的代码复制，修改后粘贴在`<input placeholder="I" id="Looking_For_S_Save_Body" value="Looking_For_Code_SaVe_RmFilE_In_SiGn">`的`value`值中*不保留`Looking_For_Code_SaVe_RmFilE_In_SiGn`*。
 * * 将`"`替换为`LF34b;`。
 * * 将`<`替换为`LF60b;`。
 * * 将`>`替换为`LF62b;`。
