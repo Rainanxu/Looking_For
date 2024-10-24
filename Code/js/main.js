@@ -1,4 +1,4 @@
-//Version: 2.01.61
+//Version: 2.01.62
 
 const Looking_For_Release_Version_Message = Looking_For_DEV_Version_Message;
 /*CONFIG START*/
@@ -1597,7 +1597,7 @@ function Looking_For_Text_Witer() {
     if (Looking_For_Model != -1) return 0;
     document.getElementById('S_Title_S').innerHTML = Looking_For_Language.T_sitting;
     document.getElementById('S_Theme').innerHTML = Looking_For_Language.T_theme;
-    document.getElementById('S_Theme_S').innerHTML = Looking_For_Language.T_theme_language;
+    document.getElementById('S_Theme_S').innerHTML = Looking_For_Language.T_theme;
     document.getElementById('S_Language').innerHTML = Looking_For_Language.T_theme_language;
     document.getElementById('S_Color').innerHTML = Looking_For_Language.T_theme_color;
     document.getElementById('S_Color_D_L_A_C_T').innerHTML = Looking_For_Language.C_theme_color_mode_auto_change;
@@ -5102,6 +5102,7 @@ function Looking_For_Get_Url_Messages() {
             if (url_id_key[0] == 'keyword') {
                 document.getElementById('putin_value').value = url_id_key[1];
                 document.getElementById('wellcome_chars_input').value = url_id_key[1];
+                link_go_way = 1;
                 ctrl_lode_in_ids_open_twices = 1;
             }
         }
@@ -5542,6 +5543,10 @@ function link_go() {
     if (link_go_way == 2) {
         /*go no any with*/
         model_clr = 2;
+    }
+    if (link_go_way == 1) {
+        /*add no any with*/
+        model_clr = 0;
     }
     else if (value_welcome_page == 1) {
         if (Looking_For_Model == 0) {

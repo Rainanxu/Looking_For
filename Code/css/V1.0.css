@@ -1,4 +1,4 @@
-/*Version: 2.01.61 */
+/*Version: 2.01.62 */
 
 .message_box {
     position: absolute;
@@ -151,7 +151,6 @@
     max-width: 240px;
     min-width: 120px;
     min-height: 40px;
-    border-radius: 6px;
     text-align: center;
     overflow: hidden;
     margin: 1px;
