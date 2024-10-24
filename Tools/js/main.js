@@ -1,4 +1,4 @@
-//Version: 0.1.0
+//Version: 0.1.1
 
 
 function start_file_load() {
@@ -996,8 +996,8 @@ function mix_all_files(){
         }
         else{
             text_T=text_T.replace(RE_St,'<style>'+text_files[file_index]+'</style>');
-            file_index++;
         }
+        file_index++;
         number0++;
     }
     list=script_list;
@@ -1009,12 +1009,12 @@ function mix_all_files(){
         }
         else{
             text_T=text_T.replace(RE_Sc,'<script>'+text_files[file_index]+'</script>');
-            file_index++;
         }
+        file_index++;
         number0++;
     }
-    text_T=reset_default_configuration(text_T);
     text_T=put_ex_code_in_input(text_T);
+    text_T=reset_default_configuration(text_T);
     HTML_text_all=text_T;
     console.log('file mixed.');
     M_E.innerHTML='file mixed.';
@@ -1141,7 +1141,12 @@ function put_ex_code_in_input(text){
     let RE_sign_in=/Looking_For_Code_SaVe_RmFilE_In_SiGn/;
     let RE_sign_start=/\/\*Looking_For_CoNfiG_EnD_sign\*\//;
     let RE_get_code=/\/\*Looking_For_CoNfiG_EnD_sign\*\/([\s\S]){0,}Looking_For_Code_SaVe_RmFilE_In_SiGn/;
-    T_T=RE_get_code.exec(T_T)[0];
+    T_T=RE_get_code.exec(T_T);
+    if(T_T===null||T_T===undefined){
+        document.getElementById('output_i').innerHTML='Error! Lost code mix tag.';
+        return -1;
+    }
+    T_T=T_T[0];
     T_T=T_T.slice(0,-36);
     T_T=remove_exegesis(T_T);
     T_T=remove_ex_enter(T_T);
@@ -1157,6 +1162,11 @@ function make_down_load(){
     let RE_data=/('([^']){0,}')|("([^"]){0,}")/;
     let L_V="";
     let number0=0;
+    number0=RE_V.exec(text_T);
+    if(number0===null|number0===undefined){
+        document.getElementById('output_i').innerHTML='Error! Lost Version message.';
+        return -1;
+    }
     number0=text_T.search(RE_V);
     text_T=text_T.slice(number0,number0+200);
     text_T=RE_V_1.exec(text_T)[0];
@@ -1221,11 +1231,20 @@ function show_code_a() {
 function reset_default_configuration(text_in){
     const conf_temp_0 = 'var Looking_For_Background_If_Use=[\r\n[\r\n[-2, "0", 0, 0, 0, 0]\r\n],\r\n[\r\n[-2, "0", 0, 0, 0, 0]\r\n]\r\n];\r\n';
     const conf_temp_1 = 'var Looking_For_Links=[\r\n[0,"",0,0,0,ctrl_go_link_as,0,1],\r\n[-1,0,0,0,0,ctrl_go_link_as,0,1],\r\n];\r\n';
+    const conf_temp_2 = 'function Looking_For_S_Save_File(if_reset_language = 1)';
     let RE_0=/((var)|(let))([\s]){1,}Looking_For_Background_If_Use([\s]){0,}=([^;]){0,};/;
     let RE_1=/((var)|(let))([\s]){1,}Looking_For_Links([\s]){0,}=([^;]){0,};/;
+    let RE_2=/function([\s]){1,}Looking_For_S_Save_File\(([\s]){0,}if_reset_language([\s]){0,}=([\s]){0,}0([\s]){0,}\)/;
     let text_T=text_in;
+    text_T=RE_0.exec(text_T);
+    if(text_T===null||text_T===undefined){
+        document.getElementById('output_i').innerHTML='Error! Lost configuration.';
+        return -1;
+    }
+    text_T=text_in;
     text_T=text_T.replace(RE_0,conf_temp_0);
     text_T=text_T.replace(RE_1,conf_temp_1);
+    text_T=text_T.replace(RE_2,conf_temp_2);
     console.log('reseted configuration.');
     return text_T;
 }

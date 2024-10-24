@@ -38,6 +38,9 @@ body {
     color: azure;
     cursor: pointer;
 }
+.input_div:hover{
+    background: #04d1f5;
+}
 
 .input_s {
     display: none;
@@ -131,7 +134,6 @@ body {
     position: absolute;
     right: 20px;
 }
-/*new start-----------------------------------------------------------------------------*/
 .files_box{
     text-align: center;
     color: rgb(20, 24, 31);
@@ -196,6 +198,9 @@ body {
     width: 18%;
     margin: 3px 0 3px 2%;
     cursor: pointer;
+}
+.files_list_button:hover{
+    background: #dddddd;
 }
 .files_type_css{
     font-style: normal;
