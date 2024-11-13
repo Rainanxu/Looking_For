@@ -1,0 +1,186 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    width: 100vw;
+    background: hsla(0, 0%, 16%, 1.00);
+}
+
+div {
+    transition: all 0.3s;
+    padding: 6px;
+}
+
+.home {
+    color: aliceblue;
+    font-size: 2rem;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 0px;
+    margin: 0px;
+}
+
+.box_box_home_div {
+    margin-top: 20%;
+    width: 100%;
+    height: 60%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0px;
+}
+
+.bader_l {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 2;
+}
+
+.bader_r {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 2;
+}
+
+.box_home_div {
+    position: relative;
+    width: 60%;
+    height: 100%;
+    margin: 0px 20% 0px 20%;
+    overflow: visible;
+    padding: 0px
+}
+
+.page_show {
+    padding: 0px;
+    position: absolute;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background: hsla(0, 0%, 29%, 1.00);
+    border-color: aliceblue;
+    border-width: 6px;
+    transition: all 0.6s;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+.page_hind {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background: hsla(0, 0%, 29%, 1.00);
+    border-color: aliceblue;
+    border-width: 6px;
+    transition: all 0.6s;
+    padding: 0px;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+.page_wait {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background: hsla(0, 0%, 29%, 1.00);
+    border-color: aliceblue;
+    border-width: 6px;
+    transition: all 0.6s;
+    padding: 0px;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+.page_title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page_text {
+    font-size: 1.5rem;
+}
+
+.text_c {
+    text-align: center;
+}
+
+.text_l {
+    text-align: left;
+    text-indent: 4rem;
+}
+
+i {
+    background: hsla(218, 100%, 64%, 0.29);
+    font-style: normal;
+    border-radius: 5%;
+}
+
+.botton_box {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.botton {
+    cursor: pointer;
+    margin: 6px;
+    border-radius: 6px;
+    float: right;
+    background: hsla(0, 0%, 16%, 1.00);
+}
+
+.botton:hover {
+    background: hsla(0, 0%, 31%, 1.00);
+}
+
+.botton:active {
+    background: hsla(0, 0%, 41%, 1.00);
+}
+
+.link_list {
+    margin-left: 5%;
+}
+
+.botton_list {
+    padding: 0px;
+    margin: 0px 0px 0px 5%;
+    width: 90%;
+}
+
+.list_botton {
+    float: none;
+    color: aliceblue;
+}
+
+a {
+    color: aqua;
+    font-size: 2rem;
+}
+
+.a_n {
+    text-decoration: none;
+}

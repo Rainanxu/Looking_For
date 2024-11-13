@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>looking-for-preview</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/JavaScript" src="main.js"></script>
+</head>
+
+<body>
+    <div id="home" class="home">
+        <div class="box_box_home_div">
+            <div class="bader_l"></div>
+            <div class="bader_r"></div>
+            <div id="box_home_div" class="box_home_div">
+                <div id="page_0" class="page_show">
+                    <div id="p0_t" class="page_title"></div>
+                    <div id="p0_t0" class="page_text text_c"></div>
+                    <div class="botton_box">
+                        <div class="botton next" onClick="next(0)">继续</div>
+                    </div>
+                </div>
+
+                <div id="page_1" class="page_wait">
+                    <div id="p1_t" class="page_title"></div>
+                    <div id="p1_t0" class="page_text text_l"></div>
+                    <div class="botton_box">
+                        <div class="botton next" onClick="next(1)">继续</div>
+                        <div class="botton back" onClick="back(1)">后退</div>
+                    </div>
+                </div>
+
+                <div id="page_2" class="page_wait">
+                    <div id="p2_t" class="page_title"></div>
+                    <div id="p2_t0" class="page_text text_l"></div>
+                    <div class="link_list">
+                        <a alt="" target="_blank" href="Looking_For_User.pdf">
+                            <div id="p2_t1"></div>
+                        </a>
+                        <a alt="" target="_blank" href="Looking_For_Dev_Doc.pdf">
+                            <div id="p2_t2"></div>
+                        </a>
+                        <a alt="" target="_blank" href="https://github.com/Rainanxu/Looking_For/">
+                            <div id="p2_t3"></div>
+                        </a>
+                        <a alt="" target="_blank" href="copyright_Looking_For.pdf">
+                            <div id="p2_t4"></div>
+                        </a>
+                    </div>
+                    <div class="botton_box">
+                        <div class="botton next" onClick="next(2)">继续</div>
+                        <div class="botton back" onClick="back(2)">后退</div>
+                    </div>
+                </div>
+
+                <div id="page_3" class="page_wait">
+                    <div id="p3_t" class="page_title"></div>
+                    <div id="p3_t0" class="page_text text_l"></div>
+                    <div class="botton_list">
+                        <a alt="" target="_self" href="Looking_For_Confed.html" class="a_n">
+                            <div id="p3_t1" class="botton list_botton text_c"></div>
+                        </a>
+                        <a alt="" target="_self" href="Looking_For_V_2.01.62_Release.html" class="a_n">
+                            <div id="p3_t2" class="botton list_botton text_c"></div>
+                        </a>
+                        <!--<a alt="" href="Looking_For_V_2.01.62_Release.html" download="Looking_For.html" class="a_n" title="download">
+                            <div id="p3_t3" class="botton list_botton text_c"></div>-->
+                        </a>
+                    </div>
+                    <div class="botton_box">
+                        <div class="botton back" onClick="back(3)">后退</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        load();
+    </script>
+</body>
+
+</html>
