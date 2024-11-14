@@ -22,12 +22,17 @@ div {
 }
 
 .box_box_home_div {
-    margin-top: 20%;
     width: 100%;
     height: 60%;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 .bader_l {
