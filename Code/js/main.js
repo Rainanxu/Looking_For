@@ -1,4 +1,4 @@
-//Version: 2.01.62
+//Version: 2.01.63 dev...
 
 const Looking_For_Release_Version_Message = Looking_For_DEV_Version_Message;
 /*CONFIG START*/
@@ -5207,7 +5207,7 @@ function side_table(value01) {
         Element_box_table.className = "side_table_show";
         Element_Img_SideTable.style.width = '210px';
         if (Looking_For_Ctrl_Move_Web_Side == 1) {
-            Element_box_web.className = "web_desk_button_on";
+            Element_box_web.className = "web_desk_side_table";
             Element_box_top_box.className = "top_over_trigger_side_on";
         }
         value_side_table = 1;
@@ -5234,11 +5234,11 @@ function side_table(value01) {
 function top_table(value01) {
     Element_box_table = document.getElementById('top_table');
     Element_Top_Input = Element_box_table.getElementsByTagName('input')[0];
-    Element_box_web_in = document.getElementById('web_in');
+    Element_box_web_in = document.getElementById('web_home');
     if (value01 == 1) {
         Element_box_table.className = "top_table_show";
         if (Looking_For_Ctrl_Move_Web_Top == 1) {
-            Element_box_web_in.className = "web_in_button_on";
+            Element_box_web_in.className = "web_home_top_table";
         }
         value_top_table = 1;
         Element_Top_Input.focus();
@@ -5251,7 +5251,7 @@ function top_table(value01) {
     else if (value01 == 0) {
         Element_box_table.className = "top_table_hide";
         if (value_top_table == 1) {
-            Element_box_web_in.className = "web_in";
+            Element_box_web_in.className = "web_home";
         }
         value_top_table = 0;
         Element_Top_Input.blur();
