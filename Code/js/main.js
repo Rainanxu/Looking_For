@@ -5037,15 +5037,19 @@ function Looking_For_Chouse_Lode_Page() {
         value_welcome_page = 1;
         value_view_page = 0;
         creat_wellcome_box_button_divs();
-        document.getElementById('wellcome_page').className = "wellcome_page";
-        document.getElementById('Navigation_Box').style.height = '100%';
+        setTimeout(function(){
+            document.getElementById('wellcome_page').className = "wellcome_page";
+            document.getElementById('Navigation_Box').style.height = '100%';
+        },40);
     }
     else if (Looking_For_Model == 3) {
         value_welcome_page = 0;
         value_view_page = 1;
         creat_side_table_divs();
-        document.getElementById('web_mix').className = "web_mix";
-        document.getElementById('View_Box').style.height = '100%';
+        setTimeout(function(){
+            document.getElementById('web_mix').className = "web_mix";
+            document.getElementById('View_Box').style.height = '100%';
+        },40);
     }
     else {
         setTimeout(function () {
