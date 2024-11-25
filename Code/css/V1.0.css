@@ -358,6 +358,10 @@
     background: var(--Back_Color_Hover);
 }
 
+.side_table_width_send:hover .side_table_links_box{
+    grid-template-rows: 37px 1fr;
+}
+
 .side_table_width_send:active {
     width: 425px;
     height: 34px;
