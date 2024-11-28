@@ -35,12 +35,12 @@ function write(lang = 0) {
     document.getElementById('p2_t1').innerHTML = Text[lang].p2_t1;
     document.getElementById('p2_t2').innerHTML = Text[lang].p2_t2;
     document.getElementById('p2_t3').innerHTML = Text[lang].p2_t3;
-    document.getElementById('p2_t4').innerHTML = Text[lang].p2_t4;
+    //document.getElementById('p2_t4').innerHTML = Text[lang].p2_t4;
     document.getElementById('p3_t').innerHTML = Text[lang].p3_t;
     document.getElementById('p3_t0').innerHTML = Text[lang].p3_t0;
     document.getElementById('p3_t1').innerHTML = Text[lang].p3_t1;
     document.getElementById('p3_t2').innerHTML = Text[lang].p3_t2;
-    document.getElementById('p3_t3').innerHTML = Text[lang].p3_t3;
+    //document.getElementById('p3_t3').innerHTML = Text[lang].p3_t3;
     return 0;
 }
 function next(value) {
