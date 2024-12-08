@@ -4401,7 +4401,6 @@ function Looking_For_Message_Box_Show(chars_show, if_space = 0) {
         alert(Text_Value);
     }
     else {
-        var Message_E = document.getElementById('Message_Space');
         Text_Value = Text_Value + chars_show[0];
         for (; ;) {
             if (Temp0 >= chars_show.length) break;
@@ -4463,6 +4462,7 @@ function Looking_For_Message_Box_Stop() {
             clearTimeout(Looking_For_Message_Box_Timeout[ID_V]);
             clearTimeout(Looking_For_Message_Box_ID_Remove_Timeout[ID_V]);
             document.getElementById('Message_Box_ID_' + ID_V).style['grid-template-rows'] = "1fr";
+            document.getElementById('Message_Box_ID_' + ID_V).style['margin-top'] = "";
             temp0 = true;
         }
         ID_V++;
