@@ -3463,6 +3463,7 @@ function Looking_For_Link_Editer_Close(value = 0) {
         if (Looking_For_Link_Edit_Useing) return 0;
     }
     Looking_For_Link_Edit_Useing = 0;
+    Looking_For_Link_Editer_Go_Way_Temp = 0;
     document.getElementById('S_Link_Link_Eider_Where').style.background = 'hsla(0,0%,0%,0.00)';
     var Edit_E = document.getElementById('S_Link_Edit_Box');
     if (Edit_E !== null) {
