@@ -1,4 +1,4 @@
-//Version: 2.01.62
+//Version: 2.01.63
 
 const Looking_For_Release_Version_Message = Looking_For_DEV_Version_Message;
 /*CONFIG START*/
@@ -2131,7 +2131,7 @@ function Looking_For_Listener_Dark_Light() {
 function Looking_For_Color_Style_Model(value) {
     if (value == 0) {
         if (Looking_For_Dark_Light_Auto_Change == 1) Looking_For_Dark_Light_Auto_Change = 0;
-        else Looking_For_Color_Link_Chouse_Value = 1;
+        else Looking_For_Dark_Light_Auto_Change = 1;
         Looking_For_Get_Dark_Light_Mode();
         return 0;
     }
